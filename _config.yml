@@ -118,10 +118,11 @@ index_with_subtitle: false
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories/
-  #about: /about/
-  archives: /archives/
+  categories: /categories/
   tags: /tags/
+  archives: /archives/
+  about: /about/
+  
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -431,7 +432,7 @@ changyan:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC80MjIxNS8xODc2Mg
 
 # Support for gitalk comments system.
 gitalk:
@@ -523,9 +524,9 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: iTBfgcwl3mOvmu0CXi1pzRMm-gzGzoHsz
+  app_key: 7mC5M72vHPmLYajsk2WCOQ97
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
