@@ -121,6 +121,7 @@ menu:
   categories: /categories/
   tags: /tags/
   archives: /archives/
+  essay: /essay/
   about: /about/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
@@ -142,6 +143,7 @@ menu_icons:
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
+  essay: comment
 
 
 
