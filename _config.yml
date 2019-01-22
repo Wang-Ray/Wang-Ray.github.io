@@ -121,7 +121,7 @@ menu:
   categories: /categories/
   tags: /tags/
   archives: /archives/
-  essay: /essay/
+  #essay: /essay/
   about: /about/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
@@ -140,7 +140,7 @@ menu_icons:
   categories: th
   schedule: calendar
   tags: tags
-  essay: user
+  #essay: commenting
   archives: archive
   sitemap: sitemap
   commonweal: heartbeat
