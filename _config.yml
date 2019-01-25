@@ -145,9 +145,6 @@ menu_icons:
   commonweal: heartbeat
   essay: comment
 
-
-
-
 # ---------------------------------------------------------------
 # Scheme Settings
 # ---------------------------------------------------------------
@@ -156,7 +153,6 @@ menu_icons:
 scheme: Muse
 #scheme: Mist
 #scheme: Pisces
-
 
 # ---------------------------------------------------------------
 # Font Settings
