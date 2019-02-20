@@ -10,6 +10,8 @@ tags: Java MyBatis DTD
 
 ## mybatis-3-config.dtd
 
+http://mybatis.org/dtd/mybatis-3-config.dtd
+
 ```dtd
 <?xml version="1.0" encoding="UTF-8" ?>
 <!ELEMENT configuration (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)>
