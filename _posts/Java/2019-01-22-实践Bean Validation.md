@@ -3,7 +3,7 @@ layout: post
 title: "实践Bean Validation"
 date: 2019-02-18 11:08:00 +0800
 categories: Java
-tags: Java IO JSR303 "Bean Validation" validation bean
+tags: Java IO JSR303 Bean-Validation validation bean
 ---
 
 
