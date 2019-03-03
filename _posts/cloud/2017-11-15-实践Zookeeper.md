@@ -1,12 +1,14 @@
 ---
 layout: post
-title: "实践zookeeper"
+title: "实践Zookeeper"
 date: 2017-09-02 09:58:13 +0800
 categories: 云计算
 tags: cloud zookeeper
 ---
 
+[Zookeeper](http://zookeeper.apache.org/) is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. All of these kinds of services are used in some form or another by distributed applications. Each time they are implemented there is a lot of work that goes into fixing the bugs and race conditions that are inevitable. Because of the difficulty of implementing these kinds of services, applications initially usually skimp on them, which make them brittle in the presence of change and difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.
 
+## 安装
 
 新建conf/zoo.cfg
 
@@ -83,3 +85,14 @@ server.2=10.10.26.23:2881:3881
 server.3=10.10.26.24:2881:3881
 ```
 
+
+
+## 客户端
+
+### 可视化客户端
+
+[zkui](https://github.com/DeemOpen/zkui)
+
+[ZooViewer](https://github.com/HelloKittyNII/ZooViewer)
+
+[ZooInspector](<https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip)
