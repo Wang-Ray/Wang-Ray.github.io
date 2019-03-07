@@ -54,7 +54,7 @@ Line spacing: 1.0
 
 ## vim
 
-![IdeaVim Hotkey](/images/IdeaVim-Hotkey.jpg)
+
 
 ###  Edition Comparison
 

@@ -43,6 +43,10 @@ Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-c
 - syncLimit：这个配置项标识 Leader 与 Follower 之间发送消息，请求和应答时间长度，最长不能超过多少个 tickTime 的时间长度，总的时间长度就是 2*2000=4 秒
 - server.A=B：C：D：其中 A 是一个数字，表示这个是第几号服务器；B 是这个服务器的 ip 地址；C 表示的是这个服务器与集群中的 Leader 服务器交换信息的端口；D 表示的是万一集群中的 Leader 服务器挂了，需要一个端口来重新进行选举，选出一个新的 Leader，而这个端口就是用来执行选举时服务器相互通信的端口。如果是伪集群的配置方式，由于 B 都是一样，所以不同的 Zookeeper 实例通信端口号不能一样，所以要给它们分配不同的端口号。
 
+## 功能
+
+
+
 ## 集群
 
 ### 伪集群
@@ -96,3 +100,7 @@ server.3=10.10.26.24:2881:3881
 [ZooViewer](https://github.com/HelloKittyNII/ZooViewer)
 
 [ZooInspector](<https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip)
+
+## 参考
+
+[这可能是把ZooKeeper概念讲的最清楚的一篇文章](http://developer.51cto.com/art/201809/583184.htm)
