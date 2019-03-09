@@ -58,3 +58,19 @@ public @interface SpringCloudApplication {
 ```
 
 `@SpringCloudApplication`包含了`@SpringBootApplication`，`@EnableDiscoveryClient`，`@EnableCircuitBreaker`这三个注解。
+
+
+
+## 参考
+
+[Spring Cloud中国社区](http://springcloud.cn/)
+
+[Spring Cloud中文网](https://springcloud.cc/)
+
+《Spring Cloud微服务实战》，[源码地址（Github）](https://github.com/Wang-Ray/SpringCloudBook-master)
+
+《spring cloud与Docker微服务架构实战》，[源代码（Github）](https://github.com/Wang-Ray/spring-cloud-book)
+
+《重新定义Spring Cloud》，[源码地址（Github）](https://github.com/SpringCloud/spring-cloud-code)
+
+《Spring Cloud微服务架构开发实战》，[源代码（Github）](https://github.com/Wang-Ray/spring-cloud-microservices-development)

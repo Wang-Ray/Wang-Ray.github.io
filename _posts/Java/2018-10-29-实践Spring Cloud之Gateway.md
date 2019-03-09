@@ -1,225 +1,142 @@
 ---
 layout: post
-title: "实践Spring Cloud之Zuul"
-date: 2017-11-03 11:08:00 +0800
+title: "实践Spring Cloud之Gateway"
+date: 2018-10-29 11:08:00 +0800
 categories: Java
-tags: spring spring-boot java spring-cloud Zuul
+tags: spring spring-boot java spring-cloud Zuul Gateway
 ---
 
-Spring Cloud Zuul是基于[Netflix Zuul](https://github.com/Netflix/zuul)的封装，实现路由和统一校验、认证和授权等过滤处理，同时基于Ribbon实现负载均衡，基于hystrix实现断路器，适用于构建API网关。
+[Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) provides a library for building an API Gateway on top of Spring MVC. Spring Cloud Gateway aims to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
+
+
+
+## 开始
 
 ```xml
 <dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-starter-zuul</artifactId>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-gateway</artifactId>
 </dependency>
 ```
 
-zuul依赖了hystrix、ribbon和actuator
+
+
+基于Java流式API自定义RouteLocator的方式定义路由信息
 
 ```java
-@EnableZuulProxy
-```
-新增/routes端点
-
-## 路由
-
-path到url或serviceId的映射，path支持Ant语法匹配
-
-### 传统路由方式
-
-不基于注册中心
-
-#### 单实例配置
-
-```properties
-# zuul.routes.<route>.path=
-zuul.routes.route-user-service.path=/user-service/**
-# zuul.routes.<route>.url=
-zuul.routes.route-user-service.url=http://localhost:8080/
+/**
+	 * 基本的转发
+	 * 当访问http://localhost:8080/jd
+	 * 转发到http://jd.com
+	 * @param builder
+	 * @return
+	 */
+	@Bean
+	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+		return builder.routes()
+				//basic proxy
+				.route(r ->r.path("/jd")
+						.uri("http://jd.com:80/").id("jd_route")
+				).build();
+	}
 ```
 
-#### 多实例配置
+通过配置的方式
 
-```properties
-# zuul.routes.<route>.path=
-zuul.routes.route-user-service.path=/user-service/**
-# zuul.routes.<route>.serviceId=
-zuul.routes.route-user-service.serviceId=user-service
-
-ribbon.eureka.enabled=false
-# <serviceId>.ribbon.listOfServers
-user-service.ribbon.listOfServers=http://localhost:8080/,http://localhost:8081/
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes: #当访问http://localhost:8080/baidu,直接转发到https://www.baidu.com/
+      - id: baidu_route
+        uri: http://baidu.com:80/
+        predicates:
+        - Path=/baidu
 ```
 
-### 面向服务的路由
+开启端点，提供了关于Filter及routes的信息查询以及指定route信息更新的Rest API接口
 
-基于注册中心（需要依赖eureka）
-
-```properties
-# zuul.routes.<route>.path=<path>
-zuul.routes.route-user-service.path=/user-service/**
-# zuul.routes.<route>.serviceId=<serviceId>
-zuul.routes.user-service.serviceId=user-service
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
 ```
 
-```properties
-# zuul.routes.<serviceId>=<path>
-zuul.routes.user-service=/user-service/**
+
+
+http://localhost:8080/actuator/gateway/routes
+
+```json
+[{"route_id":"jd_route","route_object":{"predicate":"org.springframework.cloud.gateway.support.ServerWebExchangeUtils$$Lambda$283/466056887@26bb1d5e"},"order":0}]
 ```
 
-#### 默认路由
 
-serviceId作为route和path，自动映射，不需要人工维护。
 
-可以设置不自动映射的规则匹配
+http://localhost:8081/actuator/gateway/routes
 
-```properties
-#以user-开头的服务不自动映射
-zuul.ignored-services=user-*
-# 所有服务都不自动映射
-zuul.ignored-services=*
+```json
+[{"route_id":"baidu_route","route_definition":{"id":"baidu_route","predicates":[{"name":"Path","args":{"_genkey_0":"/baidu"}}],"filters":[],"uri":"http://baidu.com:80/","order":0},"order":0}]
 ```
 
-```properties
-# 忽略path映射
-zuul.ignored-patterns=/**/hello/**
 
-# 路由前缀
-zuul.prefix=/api
-# 默认会移除路由前缀
-# 全局
-zuul.stripPrefix=true
-# 路由级
-zuul.routes.<route>.strip-prefix=true
 
-# forward
-zuul.routes.<route>.url=forward:/local
+## 路由断言工厂（Route Predicte Factory）
 
-# 全局关闭（超时）重试
-zuul.retryable=false
-# 路由级关闭（超时）重试
-zuul.routes.<route>.retryable=false
-```
+接口：`RoutePredicateFactory`
 
-### 自定义路由
+### Path
 
-`PatternServiceRouteMapper`
+### After
 
-```java
+### Before
 
-```
+### Between
 
-### 动态路由
+### Cookie
 
-基于Spring Cloud Config实现动态配置，包括路由映射等
+### Header
 
-```java
-@RefreshScope
-@ConfigurationProperties("zuul")
-public ZuulProperties zuulProperties(){
-  	return new ZuulProperties();
-}
-```
+### Host
 
-Zuul基于路由顺序匹配，而不是最有匹配
+### Method
+
+### Query
+
+### RemoteAddr
+
+### Weight
+
+权重
 
 ## 过滤器
 
-![zuul-ZuulFilter](/images/zuul-ZuulFilter.png)
+### Global Filter
 
-`FilterProcessor`
+接口：`GlobalFilter`
 
-### 请求生命周期
+### Gateway Filter
 
-![zuul-lifecycle](/images/zuul-lifecycle.png)
+`GatewayFilter`
 
-* pre
-* route
-* post
-* error
+## 过滤器工厂（Gateway Filter Factory）
 
-#### filterType
+接口：`GatewayFilterFactory`
 
+### AddRequestHeader
 
+### AddRequestParameter
 
-#### filterOrder
+### RewritePath
 
-数字越小优先级越高
+### AddResponseHeader
 
-#### shouldFilter
+### StringPrefix
 
-是否需要过滤
+### Retry
 
-#### run
+### Hystrix
 
-```java
-RequestContext ctx = RequestContext.getCurrentContext();
-HttpServletRequest request = ctx.getRequest();
-
-// 过滤掉请求，不进行路由
-ctx.setSendZuulResponse(false);
-// 设置返回的错误码
-cts.setResponseStatusCode(401);
-// 设置响应内容
-ctx.setResponseBody("认证失败");
-```
-
-
-
-### 核心过滤器
-
-#### Pre过滤器
-
-#### route过滤器
-
-#### post过滤器
-
-##### SendErrorFilter
-
-error.status_code：错误编码
-
-error.message：错误描述
-
-error.exception：异常对象
-
-#### error过滤器
-
-自定义ErrorFilter，用来处理没有处理的异常
-
-自定义ErrorExtFilter，继承SendErrorFilter，用来处理post过滤器抛出的异常和响应（由于post过滤器抛出的异常不会再转给post过滤器，参见`ZuulServlet`）
-
-异常信息
-
-DefaultErrorAttributes
-
-### 配置
-
-
-
-```properties
-# 禁用过滤器
-zuul.<SimpleClassName>.<filterType>.disable=true
-```
-### 动态过滤器
-
-
-
-## Cookie和头信息
-
-默认会过滤掉敏感头信息（Cookie，Set-Cookie，Authorization），可以自定义
-
-```properties
-# 全局
-zuul.sensitiveHeaders=
-# 路由级
-zuul.routes.<route>.customSensitiveHeaders=true
-# 路由级
-zuul.routes.<route>.sensitiveHeaders=
-# 设置host
-zuul.addHostHeader=true
-```
-
-## 高可用
-
-zuul作为微服务，可以部署多个，内部请求可以基于服务注册和发布中心实现多活，但是外部一般需要在zuul前面增加负载均衡设施，比如nginx、F5等。

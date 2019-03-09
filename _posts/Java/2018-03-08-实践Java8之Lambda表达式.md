@@ -32,7 +32,7 @@ public int add(int x, int y) {
 c -> { return c.size(); }
 ```
 
-Java8加入了对Lambda表达式（λ）的支持，Lambda表达式的`目标类型（target type）`是`函数接口（function interface）`，适用于函数接口，详细使用参见[实践Java8之函数接口（@FunctionalInterface）](/2018/02/25/实践Java8之函数接口-@FunctioinInterface.html)
+Java8加入了对Lambda表达式（λ）的支持，Lambda表达式的`目标类型（target type）`是`函数接口（function interface）`，适用于函数接口，详细使用参见[实践Java8之函数接口（@FunctionalInterface）](/java/2018/02/25/实践Java8之函数接口-@FunctioinInterface)
 
 ## Method References
 
