@@ -18,9 +18,9 @@ public @interface EnableAspectJAutoProxy {
 
 切面：切点的容器，使用@Aspect定义
 
-切点（PointCut）：拦截规则，一般分为基于方法（execution）或基于注解（@PointCut）
+切点（PointCut）：拦截规则，一般分为基于方法（execution）或基于注解（@annotation），可以被复用
 
-建言（Advice）：拦截植入的时机及动作，@Before、@After和@Around
+建言（Advice）：拦截植入的时机及动作，@Before、@After、@Around、@AfterReturing和@AfterThrowing，需指定切点，可以直接基于方法或基于PointCut指定
 
 连接点（JoinPoint）：符合拦截规则的每一个被拦截处
 
@@ -54,6 +54,15 @@ Where FooService is a typical POJO component and MyAspect is an @Aspect-style as
  @Aspect
  public class MyAspect {
      @Before("execution(* FooService+.*(..))")
+     public void advice() {
+         // advise FooService methods as appropriate
+     }
+     
+     //在该无参无内容的方法上添加一个@Poincut()来声明切入点，在后来的@Around("pc()")直接写入该方法的名字就能在自动使用这些切点
+	@Pointcut("execution(* com.service..*.add*(..)) || execution(* com.service..*.modify*(..)) || execution(* com.service..*.drop*(..))")
+    public void pc() {}
+     
+     @After("pc()")
      public void advice() {
          // advise FooService methods as appropriate
      }
