@@ -71,7 +71,7 @@ public abstract class BaseService<T> implements IService<T> {
 
 ### @Configuration
 
-定义@bean的载体，好比一个定义<bean>的xml文件，可以被实例容器加载
+定义@bean的载体，好比一个定义`<bean>`的xml文件，可以被实例容器加载
 
 ### @Import
 
