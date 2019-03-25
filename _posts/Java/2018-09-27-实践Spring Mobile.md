@@ -3,7 +3,7 @@ layout: post
 title: "实践Spring Mobile"
 date: 2018-09-27 11:08:00 +0800
 categories: Java
-tags: spring java spring-mobile
+tags: spring java spring-mobile mobile
 ---
 
 [Spring Mobile](https://projects.spring.io/spring-mobile/) is an extension to Spring MVC that aims to simplify the development of mobile web applications.

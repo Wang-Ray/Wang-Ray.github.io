@@ -6,6 +6,10 @@ categories: Java
 tags: spring spring-boot java spring-cloud Bus
 ---
 
+[Spring Cloud Bus](https://spring.io/projects/spring-cloud-bus) links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. The only implementation currently is with an AMQP broker as the transport, but the same basic feature set (and some more depending on the transport) is on the roadmap for other transports.
+
+总线
+
 `/bus/refresh`端点
 
 ## kafka
