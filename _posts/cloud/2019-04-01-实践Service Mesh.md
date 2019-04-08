@@ -17,6 +17,6 @@ Service Mesh有如下几个特点：
 
 Service Mesh的架构如下图所示：
 
-![Service Mesh](images/service-mesh.png)
+![Service Mesh](/images/service-mesh.png)
 
 Service Mesh作为Sidebar运行，对应用程序来说是透明，所有应用程序间的流量都会通过它，所以对应用程序流量的控制都可以在Service Mesh中实现。

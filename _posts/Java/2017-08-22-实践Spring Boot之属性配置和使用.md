@@ -205,7 +205,7 @@ public ServerProperties createServerProperties() {
 }
 ```
 
-第三种：参见[@EnableConfigurationProperties](/2017/08/06/实践Spring-Enable系列之EnableConfigurationProperties.html)
+第三种：参见[@EnableConfigurationProperties](/java/2017/08/06/实践Spring-Enable系列之EnableConfigurationProperties.html)
 
 ### 属性占位符
 
