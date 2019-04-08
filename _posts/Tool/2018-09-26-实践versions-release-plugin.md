@@ -11,5 +11,7 @@ tags: maven tool versioins-maven-plugin
 
 ```shell
 $ mvn versions:set -DnewVersion=4.8.3
+$ mvn versions:commit
+$ mvn versions:revert
 ```
 
