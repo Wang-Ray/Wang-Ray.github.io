@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "实践Spring Cloud之Alibaba"
+title: "实践Spring Cloud Alibaba"
 date: 2019-04-04 11:08:00 +0800
 categories: Java
 tags: spring spring-boot spring-cloud Alibaba
