@@ -95,7 +95,7 @@ Implementation-URL: http://projects.spring.io/spring-boot/cts-parent/c
 
 ### run
 
-[spring-boot:run](https://docs.spring.io/spring-boot/docs/current/maven-plugin/run-mojo.html) spring boot应用。
+[run](https://docs.spring.io/spring-boot/docs/current/maven-plugin/run-mojo.html)：运行spring boot应用。
 
 ```shell
 $ mvn spring-boot:run
