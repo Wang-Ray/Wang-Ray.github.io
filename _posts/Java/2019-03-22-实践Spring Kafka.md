@@ -2,15 +2,17 @@
 layout: post
 title: "实践Spring Kafka"
 date: 2019-03-22 09:58:13 +0800
-categories: 云计算
-tags: cloud kafka spring spring-kafka
+categories: Java
+tags: Java kafka spring spring-kafka
 ---
 
 [Spring Kafka](https://spring.io/projects/spring-kafka) applies core Spring concepts to the development of Kafka-based messaging solutions. It provides a "template" as a high-level abstraction for sending messages. It also provides support for Message-driven POJOs with `@KafkaListener` annotations and a "listener container". These libraries promote the use of dependency injection and declarative. In all of these cases, you will see similarities to the JMS support in the Spring Framework and RabbitMQ support in Spring AMQP.
 
 [Spring for Apache Kafka Samples](https://github.com/spring-projects/spring-kafka/tree/master/samples)
 
+[sample-spring-kafka](https://github.com/Wang-Ray/sample-spring-kafka)
 
+[sample-spring-kafka1](<https://github.com/Wang-Ray/sample-spring-kafka1>)
 
 ## get started
 
@@ -22,9 +24,7 @@ tags: cloud kafka spring spring-kafka
 </dependency>
 ```
 
-
-
-
+启动类
 
 ```java
 @SpringBootApplication
