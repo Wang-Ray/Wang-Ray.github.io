@@ -5,7 +5,7 @@ categories: Java
 tags: Java Proxy Dynamic-Proxy
 ---
 
-
+[秒懂Java代理与动态代理模式](https://blog.csdn.net/ShuSheng0007/article/details/80864854)
 
 [[Java的动态代理(dynamic proxy)](https://www.cnblogs.com/techyc/p/3455950.html)](https://www.cnblogs.com/techyc/p/3455950.html)
 
