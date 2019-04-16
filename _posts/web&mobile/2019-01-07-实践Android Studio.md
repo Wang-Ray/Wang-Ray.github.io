@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "实践Android Studio"
-date: 2019-01-06 09:03:13 +0800
+date: 2019-01-07 09:03:13 +0800
 categories: 移动互联网
-tags: mobile Android
+tags: mobile Android Android-Studio
 ---
 
 
 
-设定Android SDK Location
+设定Android SDK Location，比如：/media/ray/Resource/Android/Sdk
 
 
 

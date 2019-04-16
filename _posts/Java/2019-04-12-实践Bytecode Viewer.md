@@ -3,7 +3,7 @@ layout: post
 title: "实践Bytecode Viewer"
 date: 2019-04-12 11:08:00 +0800
 categories: Java
-tags: Java Decompiler "Bytecode Viewer"
+tags: Java Decompiler Bytecode-Viewer
 ---
 
 [Bytecode Viewer](https://bytecodeviewer.com/)  [(Github)](https://github.com/Konloch/bytecode-viewer) FIVE DIFFERENT JAVA DECOMPILERS, TWO BYTECODE EDITORS, A JAVA COMPILER,PLUGINS, SEARCHING, SUPPORTS LOADING FROM CLASSES, JARS, ANDROID APKS AND MORE.
