@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "实践Spring Cloud之Ribbon"
+title: "实践Spring Cloud Ribbon"
 date: 2017-10-31 11:08:00 +0800
 categories: Java
-tags: spring spring-boot java spring-cloud Eureka
+tags: spring spring-boot java spring-cloud Eureka Ribbon
 ---
 
 [Spring Cloud Ribbon](http://cloud.spring.io/spring-cloud-static/Dalston.SR4/multi/multi_spring-cloud-ribbon.html)，基于[Ribbon](https://github.com/Netflix/ribbon)实现的客户端负载均衡解决方案，这里的客户端指的是远程服务。
@@ -30,6 +30,12 @@ public class HelloClientApplication {
 	RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+    
+    @Bean
+    @LoadBalanced
+    public WebClient.Builder loadBalancedWebClientBuilder() {
+        return WebClient.builder();
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(HelloClientApplication.class, args);
@@ -53,6 +59,16 @@ public class HelloClientController {
 		logger.info("helloClient received.");
 		return restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class).getBody();
 	}
+    
+    @GetMapping("/helloClient2")
+        public Mono<String> test() {
+            Mono<String> result = webClientBuilder.build()
+                    .get()
+                    .uri("http://HELLO-SERVICE/hello")
+                    .retrieve()
+                    .bodyToMono(String.class);
+            return result;
+        }
 }
 ```
 
