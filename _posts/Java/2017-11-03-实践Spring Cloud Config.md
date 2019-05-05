@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "实践Spring Cloud之Config"
+title: "实践Spring Cloud Config"
 date: 2017-11-03 11:08:00 +0800
 categories: Java
 tags: spring spring-boot java spring-cloud Config
@@ -372,7 +372,11 @@ spring.cloud.config.discovery.service-id=config-center
 
 
 
-### Q&A
+## spring-cloud-config-admin
+
+[](http://blog.didispace.com/spring-cloud-config-admin-1-0-0-release/)
+
+## Q&A
 
 * 当启动时无法连接上config server，报错如下：
 

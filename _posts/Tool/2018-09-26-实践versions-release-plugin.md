@@ -3,7 +3,7 @@ layout: post
 title: "实践versions-maven-plugin"
 date: 2018-09-26 16:03:13 +0800
 categories: 工具
-tags: maven tool versioins-maven-plugin
+tags: maven tool versions-maven-plugin
 ---
 [Versions Maven Plugin](http://www.mojohaus.org/versions-maven-plugin/index.html)
 

@@ -16,6 +16,8 @@ tags: cloud Kubernetes container-orchestration
 
 《Kubernetes权威指南：从Docker到Kubernetes实践全接触（纪念版）》，基于kubernetes1.6
 
+《Kubernetes权威指南——企业级容器云实战》
+
 ## 相关网站
 
 [Kubernetes中文社区](https://www.kubernetes.org.cn)

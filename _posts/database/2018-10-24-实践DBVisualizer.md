@@ -12,6 +12,8 @@ tags: Database DBVisualizer
 
 Tools-》Tool Properties-》General-》Appearance-》Fonts
 
+Grids和Text Editors均选择`微软雅黑`和size 16
+
 ## 自动提示和补全
 
 Tools-》Tool Properties-》General-》SQL Commander-》Auto Completion，勾选Display Automatically
