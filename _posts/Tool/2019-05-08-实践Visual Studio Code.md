@@ -72,3 +72,5 @@ workspace可以理解为包含多个目录的一种组织结构，可以保存�
 ${file}：当前打开的文件
 
 ${workspaceFolder}：当前工作空间根目录
+
+${fileDirname}：当前打开的文件所在目录
