@@ -52,5 +52,3 @@ $ grep kvm /etc/group
 
 
 注意：项目路径不支持软引用（Android Gradle Plugin不支持）
-
-​    
