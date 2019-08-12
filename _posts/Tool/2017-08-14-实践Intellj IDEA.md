@@ -24,7 +24,7 @@ Theme: Darcula
 
 Font: Source Code Pro
 
-Size: 16
+Size: 18
 
 Line spacing: 1.0
 
