@@ -7,6 +7,8 @@ tags: maven tool maven-surefire-plugin
 ---
 [Maven Surefire Plugin](http://maven.apache.org/plugins/maven-surefire-plugin/)用于单元测试
 
+跳过单元测试
+
 ```xml
 <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
@@ -17,7 +19,11 @@ tags: maven tool maven-surefire-plugin
 </plugin>
 ```
 
+或
 
+-Dmaven.test.skip=true：
+
+默认单元测试类命名规则：
 
 ```
 <includes>

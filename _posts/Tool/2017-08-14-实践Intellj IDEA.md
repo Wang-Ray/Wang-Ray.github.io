@@ -52,10 +52,14 @@ Line spacing: 1.0
 |                |                 |
 | ctrl+shift+F10 | run             |
 
-## vim
+## plugin
 
+### vim
 
+### maven-wrapper-support
 
-###  Edition Comparison
+支持maven wrapper
+
+##  Edition Comparison
 
 [Community VS Ultimate](http://www.jetbrains.com/idea/features/editions_comparison_matrix.html)
