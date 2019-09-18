@@ -10,13 +10,15 @@ tags: spring spring-boot java spring-cloud
 
 ## 依赖
 
+版本
+
 ```xml
 <properties>
 	<spring-cloud.version>Dalston.SR4</spring-cloud.version>
 </properties>
 ```
 
-
+spring cloud依赖管理
 
 ```xml
 <dependencyManagement>
@@ -31,6 +33,8 @@ tags: spring spring-boot java spring-cloud
   </dependencies>
 </dependencyManagement>
 ```
+
+spring-cloud-dependencies继承spring-cloud-dependencies-parent
 
 ## Spring Cloud Context
 

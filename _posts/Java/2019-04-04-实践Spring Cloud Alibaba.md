@@ -6,11 +6,7 @@ categories: Java
 tags: spring spring-boot spring-cloud Alibaba
 ---
 
-[Spring Cloud Alibaba【Github】](https://github.com/spring-cloud-incubator/spring-cloud-alibaba) provides a one-stop solution for application development for the distributed solutions of Alibaba middleware.
-
-[微服务领域是不是要变天了？Spring Cloud Alibaba正式入驻Spring Cloud官方孵化器！](https://www.cnblogs.com/zuoxiaolong/p/sca1.html)
-
-
+spring cloud alibaba依赖管理
 
 ```xml
 <dependencyManagement>
@@ -26,9 +22,7 @@ tags: spring spring-boot spring-cloud Alibaba
 </dependencyManagement>
 ```
 
-
-
-
+spring-cloud-alibaba-dependencies继承spring-cloud-dependencies-parent
 
 ```xml
 <parent>
@@ -39,3 +33,8 @@ tags: spring spring-boot spring-cloud Alibaba
 </parent>
 ```
 
+
+
+[Spring Cloud Alibaba【Github】](https://github.com/spring-cloud-incubator/spring-cloud-alibaba) provides a one-stop solution for application development for the distributed solutions of Alibaba middleware.
+
+[微服务领域是不是要变天了？Spring Cloud Alibaba正式入驻Spring Cloud官方孵化器！](https://www.cnblogs.com/zuoxiaolong/p/sca1.html)
