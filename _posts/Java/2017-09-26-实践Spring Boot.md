@@ -76,6 +76,17 @@ $ mvn clean package
 $ java -jar target/spring-boot-sample-0.0.1-SNAPSHOT.jar
 ```
 
+## 容器部署
+
+```java
+public class ReadingListServletInitializer extends SpringBootServletInitializer {
+@Override
+protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+	return builder.sources(Application.class);
+	}
+}
+```
+
 ## @SpringBootApplication
 
 有`@SpringBootConfiguration`（`@Configuration`）、`@EnableAutoConfiguration`和`@ComponentScan`组成。
