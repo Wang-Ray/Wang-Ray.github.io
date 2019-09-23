@@ -10,13 +10,9 @@ tags: IntelliJ-IDEA tool java
 
 ## 注册
 
-1、设置hosts
+1、访问http://idea.medeming.com，获得注册码
 
-0.0.0.0 account.jetbrains.com
-
-2、访问http://idea.lanyus.com/，获得注册码
-
-3、在idea里面输入注册码
+2、在idea里面输入注册码
 
 ## 配置
 
