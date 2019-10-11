@@ -95,6 +95,10 @@ server.3=10.10.26.24:2881:3881
 
 ### 可视化客户端
 
+[ZooInspector](https://github.com/apache/zookeeper/tree/b79af153d0f98a4f3f3516910ed47234d7b3d74e/src/contrib/zooinspector)
+
+zookeeper自带
+
 [ZooViewer](https://github.com/Wang-Ray/ZooViewer)
 
 ```shell
@@ -102,8 +106,6 @@ $ ./zooviewer.sh
 ```
 
 [zkui](https://github.com/DeemOpen/zkui)
-
-[ZooInspector](<https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip)
 
 ## 参考
 
