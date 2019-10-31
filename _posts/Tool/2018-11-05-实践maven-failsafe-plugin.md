@@ -26,3 +26,22 @@ tags: maven tool maven-failsafe-plugin
     <include>**/*ITCase.java</include>
 </includes>
 ```
+
+
+
+## QA
+
+### what is the different between maven-surefire-plugin and mave-failsafe-plugin?
+
+- [`maven-surefire-plugin`](https://maven.apache.org/surefire/maven-surefire-plugin/) is designed for running **unit tests** and if any of the tests fail then it will fail the build immediately.
+
+- [`maven-failsafe-plugin`](https://maven.apache.org/surefire/maven-failsafe-plugin/) is designed for running **integration tests**, and decouples failing the build if there are test failures from actually running the tests.
+
+  The name "*failsafe*" was chosen both because it is a synonym of surefire and because it implies that when it fails, it does so in a safe way.
+
+  The **Failsafe Plugin** has two goals:
+
+  - [`failsafe:integration-test`](https://maven.apache.org/surefire/maven-failsafe-plugin/integration-test-mojo.html) runs the integration tests of an application,
+  - [`failsafe:verify`](https://maven.apache.org/surefire/maven-failsafe-plugin/verify-mojo.html) verifies that the integration tests of an application passed.
+
+参见[Maven FAQ](http://maven.apache.org/surefire/maven-surefire-plugin/faq.html#surefire-v-failsafe)

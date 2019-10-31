@@ -6,9 +6,7 @@ categories: Java
 tags: spring spring-boot enableAutoConfiguration
 ---
 
-Spring Boot用于快速高效地创建可执行的Spring应用程序，进一步升华了习惯优于配置，其中核心之一就是自动配置，通过**@EnableAutoConfiguration**实现，此注释会自动载入应用程序所需的相关Bean，Spring Boot在类路径中查找META-INF/spring.factories（**spring-boot-autoconfigure**中有这个文件），实施自动配置。
-
-
+Spring Boot用于快速高效地创建可执行的Spring应用程序，进一步升华了约定优于配置，其中核心之一就是自动配置，通过**@EnableAutoConfiguration**实现，此注释会自动载入应用程序所需的相关Bean，Spring Boot在类路径中查找META-INF/spring.factories（**spring-boot-autoconfigure**中有这个文件），实施自动配置。
 
 | auto onfiguration             | 备注                                       |
 | ----------------------------- | ---------------------------------------- |

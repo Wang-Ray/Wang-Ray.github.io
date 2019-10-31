@@ -20,3 +20,7 @@ Service Mesh的架构如下图所示：
 ![Service Mesh](/images/service-mesh.png)
 
 Service Mesh作为Sidebar运行，对应用程序来说是透明，所有应用程序间的流量都会通过它，所以对应用程序流量的控制都可以在Service Mesh中实现。
+
+
+
+[下一代的微服务架构基础是ServiceMesh？](https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651010083&idx=1&sn=173b1f05c2d53df427af0dbae64a34d7&chksm=bdbecc708ac9456625753a9916a83e91ab07c476d3389923953d625ea59320e8f3042eaf4b92&mpshare=1&scene=1&srcid=0220Omao7aotRy9S9Fb0ASpF&sharer_sharetime=1572421720505&sharer_shareid=240e700d294d916d751c382c12c2df76&key=9e9945bf8ade0db1f5dd2d7c3d74d95538a8a48e95089e58cfcf35abec2aa2e01678387be54e24bdb34a725a80eda06092ddaa878dd44e46ebd64e61712ff7f4cc398e9bb3670a62ed4098cc010e5475&ascene=1&uin=MTQ2NjY5Mzk1&devicetype=Windows+XP&version=62060841&lang=en&pass_ticket=yXMBWpNd%2FxSB%2BmqxAIC68dk%2FSmofKLsLoP2%2FwV6%2BGlU%3D)

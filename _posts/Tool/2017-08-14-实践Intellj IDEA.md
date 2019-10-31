@@ -22,8 +22,6 @@ Font: Source Code Pro
 
 Size: 18
 
-Line spacing: 1.0
-
 ### 快捷键
 
 | 快捷键            | 功能              |

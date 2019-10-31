@@ -54,6 +54,20 @@ public class ReadingListApplication {
 
 * 直接运行Main类
 
+## 特性
+
+### 起步依赖（Starter）
+
+通过起步依赖，自动识别并构建环境
+
+### 自动配置（Auto Configuration）
+
+[实践Spring-Boot之EnableAutoConfiguration注解](/java/2017/08/22/实践Spring-Boot之EnableAutoConfiguration注解/)
+
+### 外部化配置（External Configuration）
+
+集中配置到`application.properties`，起步依赖利用配置来驱动构建环境
+
 ## Fat Jar或Executable Jar
 
 如果想打包为可执行的jar（即依赖也打包到jar中），则可以通过`spring-boot-maven-plugin`实现，添加插件
