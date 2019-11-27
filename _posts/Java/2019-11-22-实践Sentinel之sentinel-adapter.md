@@ -6,16 +6,18 @@ categories: Java
 tags: java Sentinel flow-control circuit-breaking
 ---
 
-为主流框架提供适配，按照适配中的说明配置，Sentinel 就会默认定义提供的服务，方法等为资源。
+为`主流框架`提供`适配`，按照适配中的说明配置，Sentinel 就会默认将提供的服务和方法等定义为`资源`。
 
+## dubbo
 
+Dubbo客户端限流抛出的异常
 
 ```
 com.alibaba.csp.sentinel.slots.block.SentinelRpcException: com.alibaba.csp.sentinel.slots.block.flow.FlowException
 Caused by: com.alibaba.csp.sentinel.slots.block.flow.FlowException
 ```
 
-
+Dubbo服务端限流抛出的异常（客户端捕获得到）
 
 ```
 org.apache.dubbo.rpc.RpcException: Failed to invoke remote method: sayHello, provider: dubbo://127.0.0.1:25758/com.alibaba.csp.sentinel.demo.apache.dubbo.FooService?application=demo-consumer&default.generic=false&default.lazy=false&default.sticky=false&dubbo=2.0.2&generic=false&interface=com.alibaba.csp.sentinel.demo.apache.dubbo.FooService&lazy=false&methods=doAnother,sayHello&pid=11453&register.ip=127.0.1.1&side=consumer&sticky=false&timeout=3000&timestamp=1574392753808, cause: com.alibaba.csp.sentinel.slots.block.SentinelRpcException: com.alibaba.csp.sentinel.slots.block.flow.FlowException
