@@ -53,6 +53,19 @@ public interface ReadableDataSource<S, T> {
 
 ![ReadableDataSource](/images/ReadableDataSource.png)
 
+### 使用
+
+```java
+// 定义可读数据源，此处举例为文件数据源
+ReadableDataSource<String, List<FlowRule>> ds = new FileRefreshableDataSource<>(
+            flowRulePath, source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {})
+        );
+// 将可读数据源注册至FlowRuleManager.
+FlowRuleManager.register2Property(ds.getProperty());
+```
+
+
+
 ## WritableDataSource
 
 ```java
@@ -82,3 +95,16 @@ public interface WritableDataSource<T> {
 ```
 
 ![WritableDataSource](/images/WritableDataSource.png)
+
+### 使用
+
+pull模式中用来将控制台的修改持久化到可写数据源
+
+```java
+// 定义可写数据源，此处举例为文件数据源
+WritableDataSource<List<FlowRule>> wds = new FileWritableDataSource<>(flowRulePath, this::encodeJson);
+// 将可写数据源注册至transport模块的 WritableDataSourceRegistry 中.
+// 这样收到dashboard推送的规则时，Sentinel会先更新到内存，然后将规则写入到文件中.
+WritableDataSourceRegistry.registerFlowDataSource(wds);
+```
+

@@ -22,3 +22,8 @@ http://localhost:8719/getRules?type=<XXXX>
 http://localhost:8719/getParamRules
 ```
 
+
+
+### WritableDataSourceRegistry
+
+Writable data source registry for modifying rules via HTTP API.
