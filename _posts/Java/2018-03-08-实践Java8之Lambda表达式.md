@@ -26,7 +26,7 @@ public int add(int x, int y) {
 可见Lambda表达式由三部分组成：`参数列表`，`箭头（->）`，以及一个`表达式`或`语句块`。
 
 ```java
-// 没有参数，也没有返回值（比如：Ruuable的run方法）
+// 没有参数，也没有返回值（比如：Runable的run方法）
 () -> System.out.println("Hello Lambda!");
 // 只有一个参数且参数类型可以省略时，参数括号可以不要
 c -> { return c.size(); }
