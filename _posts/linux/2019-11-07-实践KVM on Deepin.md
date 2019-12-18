@@ -71,7 +71,7 @@ $ sudo virt-manager --no-fork
 
 ### 网路配置
 
-使用NAT网络模式，采用dhcp获取ip
+使用NAT网络模式，采用dhcp获取ip，也可以指定ip（static）
 
 ```
 TYPE=Ethernet
@@ -96,6 +96,33 @@ DNS1=210.22.84.3
 ZONE=public
 ```
 
+使用网桥模式，网桥名称virbr0，指定ip（static）
+
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=eth0
+UUID=5609329a-0c31-4f41-9990-21627f6451bb
+DEVICE=eth0
+ONBOOT=yes
+IPADDR=192.168.122.2
+NETMASK=255.255.255.0
+DNS1=210.22.84.3
+GATEWAY=192.168.122.1
+ZONE=public
+```
+
+
+
 ## new image
 
 ## clone image
@@ -116,7 +143,13 @@ ZONE=public
 
 ![kvm-import-5](/images/kvm-import-5.png)
 
+使用NAT模式
+
 ![kvm-import-6](/images/kvm-deepin-network-nat.png)
+
+使用网桥模式，填写网桥名称
+
+![kvm-import-6](/images/kvm-import-6.png)
 
 ## Q&A
 
