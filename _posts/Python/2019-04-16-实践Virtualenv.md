@@ -73,54 +73,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 
-## virtualenvwrapper
-
-[virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
-
-基于virtualenv，实现多个python的管理和使用。
-
-安装
-
-```shell
-$ pip3 install virtualenvwrapper
-```
-
-设置环境变量（可以加入到`~/.bashrc`）
-
-```shell
-# 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-# 可选，设置virtualenv的统一管理目录，默认值～/.virtualenvs
-export WORKON_HOME=~/envs
-# 可选，预设virtualenv参数
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source ~/.local/bin/virtualenvwrapper.sh
-```
-
-使用
-
-```shell
-# 创建虚拟环境env1（python3）
-$ mkvirtualenv env1
-# 创建虚拟环境env2（指定为python2）
-$ mkvirtualenv env2 --python=/usr/bin/python
-# 切换到env1
-$ workon env1
-# 退出虚拟环境
-$ deactivate
-
-# 列举所有的环境
-$ lsvirtualenv
-# 导航到当前激活的虚拟环境的目录中，比如说这样您就能够浏览它的 site-packages 。
-$ cdvirtualenv
-# 和上面的类似，但是是直接进入到 site-packages 目录中。
-$ cdsitepackages
-# 显示 site-packages 目录中的内容。
-$ lssitepackages
-```
-
-
-
 ## Q&A
 
 ```shell
