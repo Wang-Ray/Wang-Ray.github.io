@@ -7,7 +7,9 @@ tags: Java Proxy Dynamic-Proxy
 
 ## 介绍
 
-在Java的动态代理机制中，有两个重要的类或接口，一个是`InvocationHandler`接口，另一个则是`Proxy`类。InvocationHandler接口是给动态代理类的调用处理实现的，负责处理被代理对象的操作的，而Proxy是用来创建动态代理类和实例的，因为只有得到了这个对象我们才能调用那些需要代理的方法。
+在JDK的动态代理机制中，有两个重要的类或接口，一个是`InvocationHandler`接口，另一个则是`Proxy`类。InvocationHandler接口是用来定义`动态代理类`的实例被调用时的调用处理，比如前置处理、调用被代理类实例、后置处理等，而Proxy是用来创建`动态代理类`和`实例`的，因为只有得到了这个对象我们才能调用那些需要代理的方法。
+
+JDK的动态代理只支持基于接口，不支持基于类。
 
 ### Proxy
 
@@ -987,9 +989,9 @@ public class ProxyFactory {
 
 ## 原理
 
+## 参考
 
-
-
+[Java动态代理机制详解（JDK 和CGLIB，Javassist，ASM）](https://blog.csdn.net/luanlouis/article/details/24589193)
 
 [秒懂Java代理与动态代理模式](https://blog.csdn.net/ShuSheng0007/article/details/80864854)
 

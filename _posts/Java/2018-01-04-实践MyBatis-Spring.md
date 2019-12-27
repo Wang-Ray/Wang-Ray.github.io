@@ -61,6 +61,8 @@ public class UserDaoImpl implements UserDao {
 
 ## SqlSessionDaoSupport
 
+基于SqlSessionTemplate的一种扩展
+
 ```java
 public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	public User getUser (String userId) {
