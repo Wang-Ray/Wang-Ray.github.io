@@ -1,0 +1,368 @@
+---
+layout: post
+categories: 数据库
+tags: Database 读写分离
+---
+
+
+
+## cluster
+
+```shell
+$ ./elasticsearch -Epath.data=data2 -Epath.logs=log2
+$ ./elasticsearch -Epath.data=data3 -Epath.logs=log3
+```
+
+
+
+
+
+```shell
+$ curl -X GET "localhost:9200/_cat/health?v&pretty"
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1578366048 03:00:48  elasticsearch green           3         3      0   0    0    0        0             0                  -                100.0%
+```
+
+## index
+
+### single
+
+```shell
+$ curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+
+```
+
+
+
+```shell
+$ curl -X GET "localhost:9200/_cat/health?v&pretty"
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1578366293 03:04:53  elasticsearch green           3         3      2   1    0    0        0             0                  -                100.0%
+```
+
+
+
+```shell
+$ curl -X GET "localhost:9200/customer/_doc/1?pretty"
+{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "_seq_no" : 0,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "John Doe"
+  }
+}
+```
+
+
+
+### bulk
+
+```shell
+$ curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
+{
+  "took" : 8384,
+  "errors" : false,
+  "items" : [
+    {
+      "index" : {
+        "_index" : "bank",
+        "_type" : "_doc",
+        "_id" : "1",
+        "_version" : 1,
+        "result" : "created",
+        "forced_refresh" : true,
+        "_shards" : {
+          "total" : 2,
+          "successful" : 2,
+          "failed" : 0
+        },
+        "_seq_no" : 0,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+    {
+      "index" : {
+        "_index" : "bank",
+        "_type" : "_doc",
+        "_id" : "6",
+        "_version" : 1,
+        "result" : "created",
+        "forced_refresh" : true,
+        "_shards" : {
+          "total" : 2,
+          "successful" : 2,
+          "failed" : 0
+        },
+        "_seq_no" : 1,
+        "_primary_term" : 1,
+        "status" : 201
+      }
+    },
+...
+```
+
+
+
+```shell
+$ curl "localhost:9200/_cat/indices?v"
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   bank     ArXWxoNXQXi-lLEOaHeCDw   1   1       1000            0    857.7kb        443.3kb
+green  open   customer 8jczugDEQgyCIp2vYl5Ysg   1   1          1            0        7kb          3.5kb
+```
+
+
+
+```shell
+$ curl -X GET "localhost:9200/_cat/health?v&pretty"
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1578374414 05:20:14  elasticsearch green           3         3      4   2    0    0        0             0                  -                100.0%
+```
+
+## search
+
+### match_all
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "account_number": "asc" }
+  ]
+}
+'
+{
+  "took" : 52,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1000,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [
+      {
+        "_index" : "bank",
+        "_type" : "_doc",
+        "_id" : "0",
+        "_score" : null,
+        "_source" : {
+          "account_number" : 0,
+          "balance" : 16623,
+          "firstname" : "Bradshaw",
+          "lastname" : "Mckenzie",
+          "age" : 29,
+          "gender" : "F",
+          "address" : "244 Columbus Place",
+          "employer" : "Euron",
+          "email" : "bradshawmckenzie@euron.com",
+          "city" : "Hobucken",
+          "state" : "CO"
+        },
+        "sort" : [
+          0
+        ]
+      },
+...
+```
+
+#### pagination
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "account_number": "asc" }
+  ],
+  "from": 10,
+  "size": 10
+}
+'
+{
+  "took" : 4,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1000,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [
+      {
+        "_index" : "bank",
+        "_type" : "_doc",
+        "_id" : "10",
+        "_score" : null,
+        "_source" : {
+          "account_number" : 10,
+          "balance" : 46170,
+          "firstname" : "Dominique",
+          "lastname" : "Park",
+          "age" : 37,
+          "gender" : "F",
+          "address" : "100 Gatling Place",
+          "employer" : "Conjurica",
+          "email" : "dominiquepark@conjurica.com",
+          "city" : "Omar",
+          "state" : "NJ"
+        },
+        "sort" : [
+          10
+        ]
+      },
+
+```
+
+### match
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match": { "address": "mill lane" } }
+}
+'
+
+```
+
+
+
+### match_phrase
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_phrase": { "address": "mill lane" } }
+}
+'
+
+```
+
+
+
+### bool
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "age": "40" } }
+      ],
+      "must_not": [
+        { "match": { "state": "ID" } }
+      ]
+    }
+  }
+}
+'
+
+```
+
+
+
+## aggregation
+
+### term
+
+```
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword"
+      }
+    }
+  }
+}
+'
+
+```
+
+### avg
+
+```
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword"
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
+    }
+  }
+}
+'
+
+```
+
+
+
+## 参考资料
+
+《ElasticSearch技术解析与实战》，2.3.0
+
+《ElasticSearch实战》，1.5
+
+《从Lucene到ElasticSearch：全文检索实战》
+
+《ElasticSearch集成Hadoop最佳实践》，1.7.1
+
+《ElasticSearch权威指南》，[Elasticsearch: The Definitive Guide](https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)，2.x
+
+[Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
+
+《深入理解ElasticSearch》，4.0
+
+《大数据搜索与挖掘及可视化管理方案1/2/3/4版》
+
+《ElasticSearch源码解析与优化实战》，6.1.2
+
+《ELK stack权威指南》
