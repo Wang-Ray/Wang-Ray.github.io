@@ -15,6 +15,10 @@ $ ./elasticsearch -Epath.data=data3 -Epath.logs=log3
 
 
 
+```shell
+$ curl -X GET "localhost:9200/_cat/nodes?v"
+```
+
 
 
 ```shell
@@ -79,6 +83,18 @@ $ curl -X GET "localhost:9200/customer/_doc/1?pretty"
 
 
 ### bulk
+
+accounts.json
+
+```json
+{"index":{"_id":"1"}}
+{"account_number":1,"balance":39225,"firstname":"Amber","lastname":"Duke","age":32,"gender":"M","address":"880 Holmes Lane","employer":"Pyrami","email":"amberduke@pyrami.com","city":"Brogan","state":"IL"}
+{"index":{"_id":"6"}}
+{"account_number":6,"balance":5686,"firstname":"Hattie","lastname":"Bond","age":36,"gender":"M","address":"671 Bristol Street","employer":"Netagy","email":"hattiebond@netagy.com","city":"Dante","state":"TN"}
+...
+```
+
+
 
 ```shell
 $ curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
