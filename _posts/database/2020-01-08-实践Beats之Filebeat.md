@@ -13,21 +13,59 @@ $ curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.
 $ tar xzvf filebeat-7.5.1-linux-x86_64.tar.gz
 ```
 
-Set up the system module
+根据需要开启module，比如system、mysql等
 
 ```shell
 $ ./filebeat modules enable system
 ```
 
-Set up the initial environment
+初始化
 
 ```shell
 $ ./filebeat setup -e
 ```
 
-Start Filebeat
+启动
 
 ```shell
 $ ./filebeat -e
 ```
+
+
+
+## input
+
+### 多行
+
+```
+multiline:
+  # 不以"yyyy-MM-dd"这种日期开始的行与前一行合并
+  pattern: ^\d{4}-\d{1,2}-\d{1,2}
+  negate: true
+  match: after
+```
+
+## modules
+
+[filebeat-modules](https://www.elastic.co/guide/en/beats/filebeat/7.5/filebeat-modules.html)
+
+开启指定module，实际是修改`modules.d`下的对应文件
+
+```shell
+$ ./filebeat modules enable mysql
+```
+
+查询开启或关闭状态的module
+
+```
+$ ./filebeat modules list
+```
+
+
+
+## output
+
+### logstash
+
+### elasticsearch
 

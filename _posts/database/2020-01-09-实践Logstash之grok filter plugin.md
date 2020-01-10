@@ -8,6 +8,45 @@ tags: Database Logstash grok elastic elk
 
 [Grok filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
 
+
+
+## 样例 
+
+grok-pattern：
+
+```
+%{TIMESTAMP_ISO8601:timestamp}\s+%{LOGLEVEL:loglevel}\s+%{INT:pid}\s+---\s+\[%{USERNAME:thread}]\s+%{USERNAME:logger}\s+:\s+%{GREEDYDATA:msg}
+```
+
+采样：
+
+```
+2020-01-10 10:35:02.273  WARN 10637 --- [http-nio-8088-exec-1] w.r.s.r.controller.HelloController       : receive request /hello?name=ac
+```
+
+结果：
+
+```
+2020-01-10 10:35:02.669 ERROR 10637 --- [http-nio-8088-exec-3] w.r.s.r.controller.HelloController       : receive request /hello?name=ac
+{
+          "type" => "stdin",
+      "loglevel" => "ERROR",
+        "thread" => "http-nio-8088-exec-3",
+    "@timestamp" => 2020-01-10T03:18:34.317Z,
+          "host" => "Ray-PC",
+           "pid" => "10637",
+        "logger" => "w.r.s.r.controller.HelloController",
+    "timestamp" => "2020-01-10 10:35:02.669",
+      "@version" => "1",
+       "message" => "2020-01-10 10:35:02.669 ERROR 10637 --- [http-nio-8088-exec-3] w.r.s.r.controller.HelloController       : receive request /hello?name=ac",
+           "msg" => "receive request /hello?name=ac"
+}
+```
+
+
+
+
+
 [grok-patterns](https://github.com/logstash-plugins/logstash-patterns-core/blob/master/patterns/grok-patterns)
 
 ```
@@ -108,3 +147,8 @@ SYSLOGBASE %{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?%{SYSLOGHOST:logs
 LOGLEVEL ([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|INFO|[Ww]arn?(?:ing)?|WARN?(?:ING)?|[Ee]rr?(?:or)?|ERR?(?:OR)?|[Cc]rit?(?:ical)?|CRIT?(?:ICAL)?|[Ff]atal|FATAL|[Ss]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)
 ```
 
+## 参考资料
+
+[Grok Debugger](http://grokdebug.herokuapp.com/)
+
+[Grok Construtor](http://grokconstructor.appspot.com/)
