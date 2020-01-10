@@ -13,7 +13,7 @@ $ curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.
 $ tar xzvf filebeat-7.5.1-linux-x86_64.tar.gz
 ```
 
-根据需要开启module，比如system、mysql等
+【可选】根据需要开启相应的module，比如system、mysql等
 
 ```shell
 $ ./filebeat modules enable system
@@ -35,9 +35,11 @@ $ ./filebeat -e
 
 ## input
 
+[Configure inputs](https://www.elastic.co/guide/en/beats/filebeat/7.5/configuration-filebeat-options.html)
+
 ### 多行
 
-```
+```yaml
 multiline:
   # 不以"yyyy-MM-dd"这种日期开始的行与前一行合并
   pattern: ^\d{4}-\d{1,2}-\d{1,2}
