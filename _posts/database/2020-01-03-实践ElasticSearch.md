@@ -371,7 +371,7 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
 
 《ElasticSearch集成Hadoop最佳实践》，1.7.1
 
-《ElasticSearch权威指南》，[Elasticsearch: The Definitive Guide](https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)，2.x
+[《ElasticSearch权威指南》](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html)，[Elasticsearch: The Definitive Guide](https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)，2.x，已经停止维护
 
 [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
 
