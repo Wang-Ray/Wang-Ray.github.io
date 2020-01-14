@@ -4,7 +4,27 @@ categories: 数据库
 tags: Database 读写分离
 ---
 
+[Elastic英文社区](https://discuss.elastic.co/c/elasticsearch/)
 
+[Elasticsearch中文社区](https://elasticsearch.cn/)
+
+
+
+索引（index），好比MySQL里面的schema
+
+类型（type），好比数据库里面的表，字段组成类似
+
+ID，文档的唯一编号，自定义或由Elasticsearch生成
+
+集群
+
+节点：主节点、数据节点
+
+分片：主分片（前期规划固定，后期不可更改），副本分片（后期可以更改）。可以按照索引维度设置。
+
+
+
+*技术上来说，一个主分片最大能够存储 Integer.MAX_VALUE - 128 个文档*
 
 ## cluster
 
@@ -288,6 +308,64 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
 }
 '
 
+```
+
+### highlight
+
+```shell
+$ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_phrase": { "address": "mill lane" } },
+  "highlight": {
+        "fields" : {
+            "address" : {}
+        }
+    }
+}
+'
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 9.507477,
+    "hits" : [
+      {
+        "_index" : "bank",
+        "_type" : "_doc",
+        "_id" : "136",
+        "_score" : 9.507477,
+        "_source" : {
+          "account_number" : 136,
+          "balance" : 45801,
+          "firstname" : "Winnie",
+          "lastname" : "Holland",
+          "age" : 38,
+          "gender" : "M",
+          "address" : "198 Mill Lane",
+          "employer" : "Neteria",
+          "email" : "winnieholland@neteria.com",
+          "city" : "Urie",
+          "state" : "IL"
+        },
+        "highlight" : {
+          "address" : [
+            "198 <em>Mill</em> <em>Lane</em>"
+          ]
+        }
+      }
+    ]
+  }
+}
 ```
 
 
