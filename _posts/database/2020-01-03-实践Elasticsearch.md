@@ -8,7 +8,7 @@ tags: Database 读写分离
 
 [Elasticsearch中文社区](https://elasticsearch.cn/)
 
-
+## 名词解释
 
 索引（index），好比MySQL里面的schema
 
@@ -25,6 +25,16 @@ ID，文档的唯一编号，自定义或由Elasticsearch生成
 
 
 *技术上来说，一个主分片最大能够存储 Integer.MAX_VALUE - 128 个文档*
+
+文档
+
+域（field）
+
+分析器
+
+词条（token）
+
+映射
 
 ## cluster
 
