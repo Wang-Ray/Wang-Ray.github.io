@@ -56,14 +56,13 @@ GROUPLIST="1 2 5 14 15 19 20 21"
 AUTH=1
 
 for ENC in $ENCLIST; do
-	   for HASH in $HASHLIST; do
-		          for GROUP in $GROUPLIST; do
-				            echo ike-scan --trans=$ENC,$HASH,$AUTH,$GROUP -M "$@"
-					              ike-scan --trans=$ENC,$HASH,$AUTH,$GROUP -M "$@"
-						            done
-							       done
-						       done
-
+  for HASH in $HASHLIST; do
+    for GROUP in $GROUPLIST; do
+      echo ike-scan --trans=$ENC,$HASH,$AUTH,$GROUP -M "$@"
+      ike-scan --trans=$ENC,$HASH,$AUTH,$GROUP -M "$@"
+    done
+  done
+done
 ```
 
 查询
