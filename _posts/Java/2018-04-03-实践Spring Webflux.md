@@ -6,6 +6,10 @@ categories: Java
 tags: java Webflux Reactor RxJava Reactive
 ---
 
+[Web on Reactive Stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
+
+## 函数式
+
 
 
 ## SSE
