@@ -229,6 +229,36 @@ $ go get -v golang.org/x/lint/golint
 ]
 ```
 
+## Markdown
+
+安装markdownlink扩展
+
+## PlantUML
+
+markdown支持plantuml语法和plantuml适时渲染。比如：
+
+```
+​```plantuml
+@startuml component
+actor client
+node app
+database db
+
+db -> app
+app -> client
+@enduml
+​```
+```
+
+
+
+配置渲染服务器，`本地`或`官方`
+
+```json
+"plantuml.render": "PlantUMLServer",
+"plantuml.server": "http://www.plantuml.com/plantuml",
+```
+
 
 
 ## Q&A
