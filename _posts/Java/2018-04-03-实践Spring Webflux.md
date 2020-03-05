@@ -55,7 +55,7 @@ public interface HttpHandler {
 
 将WebHandler适配为HttpHandler，以便HttpHandler将请求转给WebHandler
 
-```
+```java
 package org.springframework.web.server.adapter;
 
 import java.util.Arrays;
@@ -354,7 +354,9 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 
 ```
 
- 
+ ### ServerWebExchange
+
+
 
 ## WebHandler
 
@@ -649,6 +651,8 @@ public interface WebExceptionHandler {
 ```
 
 ## WebHttpHandlerBuilder
+
+流程编排
 
 ```java
 package org.springframework.web.server.adapter;
