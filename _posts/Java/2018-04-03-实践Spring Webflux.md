@@ -10,6 +10,8 @@ tags: java Webflux Reactor RxJava Reactive
 
 ## HttpHandler
 
+反应式HTTP请求处理的最底层契约，支持不同的运行时，比如Netty、Tomcat等。
+
 ```java
 package org.springframework.http.server.reactive;
 
@@ -587,6 +589,40 @@ public class DispatcherHandler implements WebHandler, ApplicationContextAware {
 
 ```
 
+#### HandlerMapping
+
+基于匹配寻找Handler
+
+#### HandlerAdapter
+
+适配多种不同类型的Handler，解耦DispatcherHandler和Handler
+
+| implement                    | support          | comment |
+| ---------------------------- | ---------------- | ------- |
+| HandlerFunctionAdapter       | HandlerFunction  |         |
+| RequestMappingHandlerAdapter | HandlerMethod    |         |
+| SimpleHandlerAdapter         | WebHandler       |         |
+| WebSocketHandlerAdapter      | WebSocketHandler |         |
+
+
+
+#### HandlerResultHandler
+
+| implement                   |                                                              |      |
+| --------------------------- | ------------------------------------------------------------ | ---- |
+| ResponseEntityResultHandler | `ResponseEntity`, typically from `@Controller` instances.    |      |
+| ServerResponseResultHandler | `ServerResponse`, typically from functional endpoints.       |      |
+| ResponseBodyResultHandler   | Handle return values from `@ResponseBody` methods or `@RestController` classes. |      |
+| ViewResolutionResultHandler | `CharSequence`, [`View`](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/web/reactive/result/view/View.html), [Model](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/ui/Model.html), `Map`, [Rendering](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/web/reactive/result/view/Rendering.html), or any other `Object` is treated as a model attribute. |      |
+
+### Handler
+
+#### ExceptionHandler
+
+针对指定handler相关的异常处理，包括Handler调用和HandlerResultHandler调用
+
+ExceptionHandlerMethodResolver
+
 ## WebFilter
 
 
@@ -619,9 +655,17 @@ public interface WebFilter {
 
 ```
 
+### DefaultWebFilterChain
 
+### CORS
+
+CorsWebFilter
+
+CrossOrigin
 
 ## Exception
+
+装饰WebHandler，负责WebHandler的异常处理
 
 ```java
 package org.springframework.web.server;
@@ -649,6 +693,16 @@ public interface WebExceptionHandler {
 }
 
 ```
+
+## WebSessionManager
+
+## ServerCodecConfigurer
+
+## LocaleContextResolver
+
+## ForwardedHeaderTransformer
+
+当服务被反向代理时，中间经过了代理服务器，scheme、host和port等信息可能改变了，会导致客户端指向错误的地址信息，比如重定向时，[RFC7239](https://tools.ietf.org/html/rfc7239)引入了Forwarded相关header（`X-Forwarded-Host`, `X-Forwarded-Port`, `X-Forwarded-Proto`, `X-Forwarded-Ssl`, and `X-Forwarded-Prefix`），记录经过代理转发的相关信息，ForwardedHeaderTransformer会基于这些信息找到正确的地址信息。
 
 ## WebHttpHandlerBuilder
 
@@ -1045,6 +1099,14 @@ ViewResolutionResultHandler
 ## Codes
 
 ## Logging
+
+## WebFlux Config
+
+### EnableWebFlux
+
+### WebFluxConfigurationSupport
+
+### WebFluxConfigurer
 
 ## 业务层
 
