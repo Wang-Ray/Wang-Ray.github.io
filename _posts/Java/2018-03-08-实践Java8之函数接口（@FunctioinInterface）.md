@@ -37,7 +37,7 @@ Object obj = r1;
 Object o = (Runnable) () -> { System.out.println("hi"); };
 ```
 
-JDK预定义了一些函数接口，比如：`Runnable`、`Callable`、`Function`、`Supplier`、`Consumer`、`BiComsumer`和`Predicate`、`UnaryOperator`等
+JDK预定义了一些函数接口，在包java.util.function下，比如：`Runnable`、`Callable`、`Function`、`Supplier`、`Consumer`、`BiComsumer`和`Predicate`、`UnaryOperator`等
 
 ## 使用
 
@@ -169,6 +169,147 @@ public void boysAndGirls(List<Person> persons) {
 forEach(Consumer)，map(Function)，filter(Predicate)，distinct()，toMap(Function, Function)，groupBy(Function, Collector)，
 
 reduce()，sum()，max()，min()
+
+## 常用函数接口
+
+### Runnable
+
+```java
+/**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     *
+     * @see     java.lang.Thread#run()
+     */
+    public abstract void run();
+```
+
+
+
+### Callable
+
+```java
+/**
+     * Computes a result, or throws an exception if unable to do so.
+     *
+     * @return computed result
+     * @throws Exception if unable to compute a result
+     */
+    V call() throws Exception;
+```
+
+
+
+### Function
+
+```java
+/**
+     * Applies this function to the given argument.
+     *
+     * @param t the function argument
+     * @return the function result
+     */
+    R apply(T t);
+```
+
+DoubleFunction、DoubleToIntFunction、DoubleToLongFunction、IntFunction、IntToDoubleFunction、IntToLongFunction、LongFunction
+
+#### UnaryOperator
+
+操作数和结果类型相同的Function，细分接口包括：DoubleUnaryOperator、IntUnaryOperator等
+
+#### BiFunction
+
+```java
+/**
+     * Applies this function to the given arguments.
+     *
+     * @param t the first function argument
+     * @param u the second function argument
+     * @return the function result
+     */
+    R apply(T t, U u);
+```
+
+##### BinaryOperator
+
+操作数和结果相同类型的BiFunction，细分接口包括：IntBinaryOperator、DoubleBinaryOperator、LongBinaryOperator
+
+### Supplier
+
+```java
+/**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    T get();
+```
+
+DoubleSupplier、BooleanSupplier、IntSupplier
+
+### Consumer
+
+```java
+/**
+     * Performs this operation on the given argument.
+     *
+     * @param t the input argument
+     */
+    void accept(T t);
+```
+
+DoubleConsumer、IntConsumer、LongConsumer
+
+#### BiConsumer
+
+```java
+/**
+     * Performs this operation on the given arguments.
+     *
+     * @param t the first input argument
+     * @param u the second input argument
+     */
+    void accept(T t, U u);
+```
+
+### Predicate
+
+```java
+/**
+     * Evaluates this predicate on the given argument.
+     *
+     * @param t the input argument
+     * @return {@code true} if the input argument matches the predicate,
+     * otherwise {@code false}
+     */
+    boolean test(T t);
+```
+
+DoublePredicate、IntPredicate、
+
+#### BiPredicate
+
+```java
+/**
+     * Evaluates this predicate on the given arguments.
+     *
+     * @param t the first input argument
+     * @param u the second input argument
+     * @return {@code true} if the input arguments match the predicate,
+     * otherwise {@code false}
+     */
+    boolean test(T t, U u);
+```
+
+
+
+### UnaryOperator
 
 ## 参考
 

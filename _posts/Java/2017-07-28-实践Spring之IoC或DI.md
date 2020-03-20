@@ -14,9 +14,11 @@ autowire
 
 ## 实例容器
 
-BeanFactory
+### BeanFactory
 
-ApplicationContext
+#### BeanFactoryAware
+
+### ApplicationContext
 
 常用的有：
 
@@ -32,7 +34,20 @@ BeanFactoryPostProcessor
 
 
 
-ApplicationContextAware
+#### ApplicationContextAware
+
+### BeanPostProcessor
+
+```
+InstantiationAwareBeanPostProcessor
+DestructionAwareBeanPostProcessor
+```
+
+### BeanFactoryPostProcessor
+
+```
+PropertyResourceConfigurer
+```
 
 ## 基于XML
 

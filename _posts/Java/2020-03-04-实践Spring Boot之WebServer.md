@@ -1,28 +1,14 @@
 ---
 layout: post
 categories: Java
-tags: java WebServer
+tags: java WebServer Tomcat Netty Jetty Undertow
 ---
 
 ## WebServer
 
-```java
-/*
- * Copyright 2012-2019 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+![WebServer](/images/WebServer.png)
 
+```java
 package org.springframework.boot.web.server;
 
 /**
@@ -60,7 +46,116 @@ public interface WebServer {
 
 ```
 
+### ServletWebServerFactory
+
+![ServletWebServerFactory](/images/ServletWebServerFactory.png)
+
+传统命令式WebServer
+
+### ReactiveWebServerFactory
+
+![ReactiveWebServerFactory](/images/ReactiveWebServerFactory.png)
+
+反应式WebServer
+
+## WebServerFactoryCustomizer
+
+```java
+@FunctionalInterface
+public interface WebServerFactoryCustomizer<T extends WebServerFactory> {
+
+	/**
+	 * Customize the specified {@link WebServerFactory}.
+	 * @param factory the web server factory to customize
+	 */
+	void customize(T factory);
+
+}
+```
+
+WebServerFactoryCustomizerBeanPostProcessor实施执行WebServerFactoryCustomizer，支持N个实例。
+
+```java
+private Collection<WebServerFactoryCustomizer<?>> getCustomizers() {
+		if (this.customizers == null) {
+			// Look up does not include the parent context
+			this.customizers = new ArrayList<>(getWebServerFactoryCustomizerBeans());
+			this.customizers.sort(AnnotationAwareOrderComparator.INSTANCE);
+			this.customizers = Collections.unmodifiableList(this.customizers);
+		}
+		return this.customizers;
+	}
+
+private void postProcessBeforeInitialization(WebServerFactory webServerFactory) {
+		LambdaSafe
+				.callbacks(WebServerFactoryCustomizer.class, getCustomizers(),
+						webServerFactory)
+				.withLogger(WebServerFactoryCustomizerBeanPostProcessor.class)
+				.invoke((customizer) -> customizer.customize(webServerFactory));
+	}
+```
+
+
+
 ## NettyWebServer
+
+### NettyReactiveWebServerFactory
+
+创建NettyWebServer的工厂。
+
+支持NettyServerCustomizer。
+
+```java
+/**
+	 * Set {@link NettyServerCustomizer}s that should be applied to the Netty server
+	 * builder. Calling this method will replace any existing customizers.
+	 * @param serverCustomizers the customizers to set
+	 */
+	public void setServerCustomizers(
+			Collection<? extends NettyServerCustomizer> serverCustomizers) {
+		Assert.notNull(serverCustomizers, "ServerCustomizers must not be null");
+		this.serverCustomizers = new ArrayList<>(serverCustomizers);
+	}
+
+	/**
+	 * Add {@link NettyServerCustomizer}s that should applied while building the server.
+	 * @param serverCustomizers the customizers to add
+	 */
+	public void addServerCustomizers(NettyServerCustomizer... serverCustomizers) {
+		Assert.notNull(serverCustomizers, "ServerCustomizer must not be null");
+		this.serverCustomizers.addAll(Arrays.asList(serverCustomizers));
+	}
+```
+
+### NettyWebServerFactoryCustomizer
+
+NettyWebServerFactory定制配置
+
+### NettyServerCustomizer
+
+NettyServer定制配置
+
+```java
+package org.springframework.boot.web.embedded.netty;
+
+import java.util.function.Function;
+import reactor.netty.http.server.HttpServer;
+/**
+ * Mapping function that can be used to customize a Reactor Netty server instance.
+ *
+ * @author Brian Clozel
+ * @see NettyReactiveWebServerFactory
+ * @since 2.1.0
+ */
+@FunctionalInterface
+public interface NettyServerCustomizer extends Function<HttpServer, HttpServer> {
+
+}
+```
+
+### HttpServer
+
+reactor-netty基于Netty扩展的
 
 ## TomcatWebServer
 

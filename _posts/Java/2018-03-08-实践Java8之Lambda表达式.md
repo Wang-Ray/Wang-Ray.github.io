@@ -23,7 +23,7 @@ public int add(int x, int y) {
 (x, y) -> { return x + y; } 
 ```
 
-可见Lambda表达式由三部分组成：`参数列表`，`箭头（->）`，以及一个`表达式`或`语句块`。
+可见Lambda表达式由三部分组成：`参数`，`箭头（->）`，以及一个`表达式`或`语句块`。
 
 ```java
 // 没有参数，也没有返回值（比如：Runable的run方法）
@@ -36,21 +36,23 @@ Java8加入了对Lambda表达式（λ）的支持，Lambda表达式的`目标类
 
 ## Method References
 
-有时候Lambda表达式仅仅是调用一个已经存在的方法，此时`method reference`可以简化调用。
+有时候Lambda表达式仅仅是调用一个已经存在的方法，可以理解为方法已经有名字了，此时`method reference`可以简化调用（`::`），省略`参数`和`箭头`。
 
-| Kind                                     | Example                                |
-| ---------------------------------------- | -------------------------------------- |
-| Reference to a static method             | `ContainingClass::staticMethodName`    |
-| Reference to an instance method of a particular object | `containingObject::instanceMethodName` |
-| Reference to an instance method of an arbitrary object of a particular type | `ContainingType::methodName`           |
-| Reference to a constructor               | `ClassName::new`                       |
+| Kind                                                         | Example                                |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Reference to a `static method`                               | `ContainingClass::staticMethodName`    |
+| Reference to an `instance method` of a particular object     | `containingObject::instanceMethodName` |
+| Reference to an `instance method` of an arbitrary object of a particular type | `ContainingType::methodName`           |
+| Reference to a `constructor`                                 | `ClassName::new`                       |
 
 例如：
 ```java
+// static method
 button.setOnAction(System.out::println);
 // 等价于如下lambda表达式
 button.setOnAction(event->System.out.println(event));
 
+// 
 Arrays.sort(strings, String::compareToIgnoreCase);
 ```
 

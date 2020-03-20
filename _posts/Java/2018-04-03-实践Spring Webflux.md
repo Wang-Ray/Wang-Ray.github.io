@@ -10,7 +10,7 @@ tags: java Webflux Reactor RxJava Reactive
 
 ## HttpHandler
 
-反应式HTTP请求处理的最底层契约，支持不同的运行时，比如Netty、Tomcat等。
+反应式HTTP请求处理的最底层契约，支持不同的运行时（参见[实践spring boot之webserver](/java/2020/03/04/实践Spring-Boot之WebServer/)），比如Netty、Tomcat等。
 
 ```java
 package org.springframework.http.server.reactive;
@@ -362,7 +362,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 
 ## WebHandler
 
-spring boot默认基于webHandler`这个bean id来初始化，默认的WebHandler实现是DispatcherHandler，可以使用自定义的覆盖。
+Web请求处理。spring boot默认基于`webHandler`这个bean id来初始化`WebHandler`，默认的`WebHandler`实现是`DispatcherHandler`，可以使用自定义的覆盖。
 
 ```
 # 定义bean id webHandler
@@ -372,8 +372,6 @@ org.springframework.web.reactive.config.WebFluxConfigurationSupport#webHandler
 # 装载webHandler
 org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext
 ```
-
-
 
 WebHandler：
 
@@ -410,6 +408,8 @@ public interface WebHandler {
 ```
 
 ### DispatcherHandler
+
+好比Spring MVC里面的DispatcherServlet，负责请求分发到具体的业务处理handler。
 
 ```java
 package org.springframework.web.reactive;
@@ -608,6 +608,8 @@ public class DispatcherHandler implements WebHandler, ApplicationContextAware {
 
 #### HandlerResultHandler
 
+基于handler处理结果HandlerResult，执行后续处理，比如直接应答或渲染视图页面
+
 | implement                   |                                                              |      |
 | --------------------------- | ------------------------------------------------------------ | ---- |
 | ResponseEntityResultHandler | `ResponseEntity`, typically from `@Controller` instances.    |      |
@@ -616,6 +618,8 @@ public class DispatcherHandler implements WebHandler, ApplicationContextAware {
 | ViewResolutionResultHandler | `CharSequence`, [`View`](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/web/reactive/result/view/View.html), [Model](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/ui/Model.html), `Map`, [Rendering](https://docs.spring.io/spring-framework/docs/5.2.4.RELEASE/javadoc-api/org/springframework/web/reactive/result/view/Rendering.html), or any other `Object` is treated as a model attribute. |      |
 
 ### Handler
+
+handler指业务处理方法，比如Controller里的业务处理方法。
 
 #### ExceptionHandler
 
@@ -1096,7 +1100,15 @@ public final class WebHttpHandlerBuilder {
 
 ViewResolutionResultHandler
 
+ViewResolver
+
+UrlBasedViewResolver：redirect
+
 ## Codes
+
+## WebClient
+
+### ClientHttpConnector
 
 ## Logging
 
@@ -1104,9 +1116,170 @@ ViewResolutionResultHandler
 
 ### EnableWebFlux
 
+引入DelegatingWebFluxConfiguration
+
 ### WebFluxConfigurationSupport
 
+WebFlux的主要配置类
+
+#### DelegatingWebFluxConfiguration
+
+继承WebFluxConfigurationSupport，扩展以便通过WebFluxConfigurer来定制配置
+
+```java
+/**
+ * A subclass of {@code WebFluxConfigurationSupport} that detects and delegates
+ * to all beans of type {@link WebFluxConfigurer} allowing them to customize the
+ * configuration provided by {@code WebFluxConfigurationSupport}. This is the
+ * class actually imported by {@link EnableWebFlux @EnableWebFlux}.
+ *
+ * @author Brian Clozel
+ * @since 5.0
+ */
+@Configuration
+public class DelegatingWebFluxConfiguration extends WebFluxConfigurationSupport {
+
+	private final WebFluxConfigurerComposite configurers = new WebFluxConfigurerComposite();
+
+	@Autowired(required = false)
+	public void setConfigurers(List<WebFluxConfigurer> configurers) {
+		if (!CollectionUtils.isEmpty(configurers)) {
+			this.configurers.addWebFluxConfigurers(configurers);
+		}
+	}
+	// 省略其他内容
+}
+```
+
 ### WebFluxConfigurer
+
+WebFlux定制配置，支持N个实例
+
+```java
+package org.springframework.web.reactive.config;
+
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.Formatter;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.lang.Nullable;
+import org.springframework.validation.MessageCodesResolver;
+import org.springframework.validation.Validator;
+import org.springframework.web.reactive.accept.RequestedContentTypeResolverBuilder;
+import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer;
+
+/**
+ * Defines callback methods to customize the configuration for WebFlux
+ * applications enabled via {@link EnableWebFlux @EnableWebFlux}.
+ *
+ * <p>{@code @EnableWebFlux}-annotated configuration classes may implement
+ * this interface to be called back and given a chance to customize the
+ * default configuration. Consider implementing this interface and
+ * overriding the relevant methods for your needs.
+ *
+ * @author Brian Clozel
+ * @author Rossen Stoyanchev
+ * @since 5.0
+ * @see WebFluxConfigurationSupport
+ * @see DelegatingWebFluxConfiguration
+ */
+public interface WebFluxConfigurer {
+
+	/**
+	 * Configure how the content type requested for the response is resolved
+	 * when handling requests with annotated controllers.
+	 * @param builder for configuring the resolvers to use
+	 */
+	default void configureContentTypeResolver(RequestedContentTypeResolverBuilder builder) {
+	}
+
+	/**
+	 * Configure "global" cross origin request processing.
+	 * <p>The configured readers and writers will apply to all requests including
+	 * annotated controllers and functional endpoints. Annotated controllers can
+	 * further declare more fine-grained configuration via
+	 * {@link org.springframework.web.bind.annotation.CrossOrigin @CrossOrigin}.
+	 * @see CorsRegistry
+	 */
+	default void addCorsMappings(CorsRegistry registry) {
+	}
+
+	/**
+	 * Configure path matching options.
+	 * <p>The configured path matching options will be used for mapping to
+	 * annotated controllers and also
+	 * {@link #addResourceHandlers(ResourceHandlerRegistry) static resources}.
+	 * @param configurer the {@link PathMatchConfigurer} instance
+	 */
+	default void configurePathMatching(PathMatchConfigurer configurer) {
+	}
+
+	/**
+	 * Add resource handlers for serving static resources.
+	 * @see ResourceHandlerRegistry
+	 */
+	default void addResourceHandlers(ResourceHandlerRegistry registry) {
+	}
+
+	/**
+	 * Configure resolvers for custom {@code @RequestMapping} method arguments.
+	 * @param configurer to configurer to use
+	 */
+	default void configureArgumentResolvers(ArgumentResolverConfigurer configurer) {
+	}
+
+	/**
+	 * Configure custom HTTP message readers and writers or override built-in ones.
+	 * <p>The configured readers and writers will be used for both annotated
+	 * controllers and functional endpoints.
+	 * @param configurer the configurer to use
+	 */
+	default void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
+	}
+
+	/**
+	 * Add custom {@link Converter Converters} and {@link Formatter Formatters} for
+	 * performing type conversion and formatting of annotated controller method arguments.
+	 */
+	default void addFormatters(FormatterRegistry registry) {
+	}
+
+	/**
+	 * Provide a custom {@link Validator}.
+	 * <p>By default a validator for standard bean validation is created if
+	 * bean validation API is present on the classpath.
+	 * <p>The configured validator is used for validating annotated controller
+	 * method arguments.
+	 */
+	@Nullable
+	default Validator getValidator() {
+		return null;
+	}
+
+	/**
+	 * Provide a custom {@link MessageCodesResolver} to use for data binding in
+	 * annotated controller method arguments instead of the one created by
+	 * default in {@link org.springframework.validation.DataBinder}.
+	 */
+	@Nullable
+	default MessageCodesResolver getMessageCodesResolver() {
+		return null;
+	}
+
+	/**
+	 * Configure view resolution for rendering responses with a view and a model,
+	 * where the view is typically an HTML template but could also be based on
+	 * an HTTP message writer (e.g. JSON, XML).
+	 * <p>The configured view resolvers will be used for both annotated
+	 * controllers and functional endpoints.
+	 */
+	default void configureViewResolvers(ViewResolverRegistry registry) {
+	}
+
+}
+```
+
+
 
 ## 业务层
 
