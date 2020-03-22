@@ -1293,7 +1293,9 @@ public interface WebFluxConfigurer {
 
 
 
+## ResourceHandler
 
+ResourceHandlerRegistrationCustomizer
 
 ## SSE
 

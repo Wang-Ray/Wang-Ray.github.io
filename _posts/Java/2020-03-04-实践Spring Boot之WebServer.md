@@ -50,7 +50,7 @@ public interface WebServer {
 
 ![ServletWebServerFactory](/images/ServletWebServerFactory.png)
 
-传统命令式WebServer
+Servlet WebServer
 
 ### ReactiveWebServerFactory
 
