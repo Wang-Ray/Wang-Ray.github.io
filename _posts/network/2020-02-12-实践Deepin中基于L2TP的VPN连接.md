@@ -74,7 +74,7 @@ SA=(Enc=3DES Hash=MD5 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration=28
 SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration=28800)
 ```
 
-则`密钥交换协议`为`3des-sha1-modp1024`或`3des-sha1-modp1024`或`3des-sha1-modp1024,3des-sha1-modp1024`
+则`密钥交换协议`为`3des-sha1-modp1024`或`3des-md5-modp1024`或`3des-sha1-modp1024,3des-md5-modp1024`
 
 `安全封装协议`为`3des-md5`或`3des-sha1`或`3des-sha1,3des-md5`
 

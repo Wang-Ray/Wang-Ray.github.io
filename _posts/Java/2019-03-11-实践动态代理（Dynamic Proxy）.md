@@ -13,6 +13,8 @@ JDK的动态代理只支持基于接口，不支持基于类。
 
 ### Proxy
 
+仅与被代理接口有关，与具体被代理类无直接关系
+
 ```java
 package java.lang.reflect;
 
@@ -827,9 +829,27 @@ public class Proxy implements java.io.Serializable {
 }
 ```
 
+#### newProxyInstance
 
+生成代理实例
+
+ClassLoader loader：生成代理类的类加载器
+
+Class<?>[] interfaces：接口
+
+InvocationHandler h：调用处理器
+
+#### getProxyClass
+
+生成代理类
+
+ClassLoader loader：生成代理类的类加载器
+
+Class<?>[] interfaces：接口
 
 ### InvocationHandler
+
+一般而言会与被代理类有关，进行前置、后置等处理外，调用被代理类实例
 
 ```java
 package java.lang.reflect;
@@ -911,23 +931,17 @@ public interface InvocationHandler {
 接口
 
 ```java
-public interface ILawSuit {
-    void submit(String proof);//提起诉讼
-    void defend();//法庭辩护
+public interface IHelloService {
+    void hello();
 }
 ```
 
 实现
 
 ```java
-public class CuiHuaNiu implements ILawSuit {
-    @Override
-    public void submit(String proof) {
-        System.out.println(String.format("老板欠薪跑路，证据如下：%s",proof));
-    }
-    @Override
-    public void defend() {
-        System.out.println(String.format("铁证如山，%s还牛翠花血汗钱","马旭"));
+public class HelloService implements IHelloService {
+    public void hello() {
+        System.out.println("hello");
     }
 }
 ```
@@ -935,15 +949,18 @@ public class CuiHuaNiu implements ILawSuit {
 调用处理
 
 ```java
-public class DynProxyLawyer implements InvocationHandler {
-    private Object target;//被代理的对象
-    public DynProxyLawyer(Object obj){
-        this.target=obj;
+public class HelloServiceInvocationHandler implements InvocationHandler {
+    // 被代理对象
+    private Object target;
+
+    public HelloServiceInvocationHandler(Object obj) {
+        this.target = obj;
     }
-    @Override
+
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-	    System.out.println("案件进展："+method.getName());
-        Object result=method.invoke(target,args);
+        System.out.println("前置处理");
+        Object result = method.invoke(target, args);
+        System.out.println("后置处理");
         return result;
     }
 }
@@ -952,10 +969,10 @@ public class DynProxyLawyer implements InvocationHandler {
 代理工厂
 
 ```java
-public class ProxyFactory {
-    public static Object getDynProxy(Object target) {
-        InvocationHandler handler = new DynProxyLawyer(target);
-        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), handler);
+public class JdkProxyFactory<T> {
+	public T getProxy(T target) {
+        HelloServiceInvocationHandler helloServiceInvocationHandler = new HelloServiceInvocationHandler(target);
+        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), helloServiceInvocationHandler);
     }
 }
 ```
@@ -963,28 +980,31 @@ public class ProxyFactory {
 或者
 
 ```java
-public class ProxyFactory {
-    public static Object getDynProxy(Object target) {
-        InvocationHandler handler = new DynProxyLawyer(target);
+public class JdkProxyFactory<T> {
+    public T getProxy1(T target, InvocationHandler handler) throws Throwable {
         // 创建代理类
         Class<?> proxyClass = Proxy.getProxyClass(target.getClass().getClassLoader(), target.getClass().getInterfaces());
         // 创建代理实例
-        return proxyClass.getConstructor(InvocationHandler.class).
-                      newInstance(handler);
+        return (T) proxyClass.getConstructor(InvocationHandler.class).
+                newInstance(handler);
     }
 }
 ```
 
-
-
 运行
 
 ```java
- public static void main(String[] args) {
-        ILawSuit proxy= (ILawSuit) ProxyFactory.getDynProxy(new CuiHuaNiu());
-        proxy.submit("工资流水在此");
-        proxy.defend();
-    }
+public static void main(String[] args) {
+    JdkProxyFactory<IHelloService> jdkProxyFactory = new JdkProxyFactory<IHelloService>();
+	IHelloService target = new HelloService();
+	HelloServiceInvocationHandler helloServiceInvocationHandler = new HelloServiceInvocationHandler(target);
+
+	IHelloService proxy = jdkProxyFactory.getProxy(IHelloService.class, helloServiceInvocationHandler);
+	proxy.hello();
+    
+    IHelloService proxy3 = jdkProxyFactory.getProxy1(target, helloServiceInvocationHandler);
+	proxy3.hello();
+}
 ```
 
 ## 原理
