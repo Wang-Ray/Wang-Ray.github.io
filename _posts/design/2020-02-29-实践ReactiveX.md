@@ -1,7 +1,7 @@
 ---
 layout: post
-categories: Architecture
-tags: Architecture Reactive Reactor RxJava ReactiveX
+categories: design
+tags: design Reactive Reactor RxJava ReactiveX
 ---
 
 [ReactiveX](http://reactivex.io/) An API for asynchronous programming with observable streams.

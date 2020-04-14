@@ -6,6 +6,12 @@ tags: Java Dubbo Transport Netty
 
 
 
+## consumer
+
+ReferenceAnnotationBeanPostProcessor
+
+## provider
+
 ChannelEventRunnable
 
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-categories: Architecture
-tags: Architecture same-origin-policy
+categories: design
+tags: design same-origin-policy
 ---
 
 [Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)

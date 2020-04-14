@@ -107,6 +107,12 @@ $ ./zooviewer.sh
 
 [zkui](https://github.com/DeemOpen/zkui)
 
+### API客户端
+
+[curator](https://curator.apache.org/index.html)
+
+[zkclient](https://github.com/sgroschupf/zkclient)
+
 ## 参考
 
 [这可能是把ZooKeeper概念讲的最清楚的一篇文章](http://developer.51cto.com/art/201809/583184.htm)
