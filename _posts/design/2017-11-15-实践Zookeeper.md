@@ -1,12 +1,50 @@
 ---
 layout: post
-title: "实践Zookeeper"
-date: 2017-09-02 09:58:13 +0800
-categories: 云计算
-tags: cloud zookeeper
+categories: Design
+tags: design zookeeper
 ---
 
 [Zookeeper](http://zookeeper.apache.org/) is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. All of these kinds of services are used in some form or another by distributed applications. Each time they are implemented there is a lot of work that goes into fixing the bugs and race conditions that are inevitable. Because of the difficulty of implementing these kinds of services, applications initially usually skimp on them, which make them brittle in the presence of change and difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.
+
+基于 ZooKeeper 可以实现诸如数据发布/订阅、配置中心、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。
+
+## 设计
+
+### Session
+
+sessionTimeout，sessionId
+
+### Znode
+
+![zookeeper znode](/images/zookeeper-znode.jpeg)
+
+类似文件系统，由节点（node）组成的树形结构，从`/`开始，比如`/dubbo/config/dubbo/dubbo.properties`，节点具有`属性`和`值`
+
+分为持久节点和临时节点
+
+持久节点是指一旦这个ZNode被创建了，除非主动进行ZNode的移除操作，否则这个ZNode将一直保存在Zookeeper上。
+
+临时节点是指生命周期与Session绑定，一旦Session失效，在此Session下创建的临时节点都会被移除。
+
+**SEQUENTIAL**
+
+### 版本
+
+### Watcher
+
+### ACL
+
+* CREATE：创建`子节点`
+* READ：获取节点数据和子节点列表
+* WRITE：更新节点数据
+* DELETE：删除`子节点`
+* ADMIN：设置节点ACL
+
+### ZAB
+
+崩溃恢复：选举Leader和数据同步
+
+消息广播：
 
 ## 安装
 
@@ -48,6 +86,10 @@ Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-c
 
 
 ## 集群
+
+![zookeeper cluster](/images/zookeeper-cluster.jpeg)
+
+![zookeeper cluster role](/images/zookeeper-cluster-role.jpeg)
 
 ### 伪集群
 
