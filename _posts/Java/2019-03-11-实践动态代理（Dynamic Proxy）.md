@@ -924,7 +924,13 @@ public interface InvocationHandler {
 }
 ```
 
+#### invoke
 
+Object proxy：生成的代理类的实例
+
+Method method：被代理接口的方法
+
+Object[] args：方法调用参数
 
 ## 样例
 
@@ -997,6 +1003,7 @@ public class JdkProxyFactory<T> {
 public static void main(String[] args) {
     JdkProxyFactory<IHelloService> jdkProxyFactory = new JdkProxyFactory<IHelloService>();
 	IHelloService target = new HelloService();
+    
 	HelloServiceInvocationHandler helloServiceInvocationHandler = new HelloServiceInvocationHandler(target);
 
 	IHelloService proxy = jdkProxyFactory.getProxy(IHelloService.class, helloServiceInvocationHandler);
