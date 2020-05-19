@@ -10,9 +10,11 @@ tags: java future completablefuture
 
 ```java
 // 有返回值
-CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(Supplier);
+CompletableFuture<U> completableFuture = CompletableFuture.supplyAsync(Supplier<U>);
 // 没有返回值
 CompletableFuture completableFuture = CompletableFuture.runAsync(Runnable);
+
+CompletableFuture<U> completableFuture = CompletableFuture.completedFuture(U);
 ```
 
 默认Executor为：
