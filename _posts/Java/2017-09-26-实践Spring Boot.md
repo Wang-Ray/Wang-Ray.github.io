@@ -54,6 +54,10 @@ public class ReadingListApplication {
 
 * 直接运行Main类
 
+### Spring Initializr
+
+[Aliyun Java Initializr](https://start.aliyun.com/)
+
 ## 特性
 
 ### 起步依赖（Starter）

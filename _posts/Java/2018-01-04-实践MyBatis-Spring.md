@@ -8,6 +8,14 @@ tags: database MyBatis MyBatis-Spring JDBC ORM
 
 [MyBatis-Spring](http://www.mybatis.org/spring/)
 
+```xml
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis-spring</artifactId>
+	<version>1.3.1</version>
+</dependency>
+```
+
 ## SqlSessionFactoryBean
 
 ```xml
