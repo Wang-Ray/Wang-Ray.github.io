@@ -231,11 +231,11 @@ $ go get -v golang.org/x/lint/golint
 
 ## Markdown
 
-安装markdownlink扩展
+安装markdownlint扩展
 
 ## PlantUML
 
-markdown支持plantuml语法和plantuml适时渲染。比如：
+安装plantuml扩展，markdown支持plantuml语法和plantuml适时渲染。比如：
 
 ```
 ​```plantuml
@@ -259,7 +259,9 @@ app -> client
 "plantuml.server": "http://www.plantuml.com/plantuml",
 ```
 
+## Vim
 
+安装Vim扩展
 
 ## Q&A
 
