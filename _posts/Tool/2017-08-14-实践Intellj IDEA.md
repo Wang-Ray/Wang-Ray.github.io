@@ -10,17 +10,15 @@ tags: IntelliJ-IDEA tool java
 
 ## 注册
 
-可访问http://idea.medeming.com，获得注册码。
+可访问[http://idea.medeming.com](http://idea.medeming.com)，获得注册码。
 
 ## 配置
 
 Theme: Darcula
 
-Font: Source Code Pro
+UI Font：Size：16
 
-Size: 18
-
-Scale: 1.0
+Editor Font：Source Code Pro，Size：18，Scale：1.0
 
 ### 快捷键
 
@@ -50,6 +48,8 @@ Scale: 1.0
 ## plugin
 
 ### vim
+
+ideavim
 
 ### maven-wrapper-support
 

@@ -40,7 +40,15 @@ irqbypass              13503  21 kvm
 $ sudo apt install virt-manager bridge-utils libvirt-clients qemu qemu-kvm
 ```
 
-## virbr0
+启动服务
+
+```shell
+$ sudo systemctl status libvirtd
+```
+
+## 配置网络
+
+### virbr0
 
 默认会生成一个虚拟网卡`virbr0`
 
@@ -57,6 +65,51 @@ virbr0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 控制virbr0状态
 
 ![kvm-deepin-connection-details](/images/kvm-deepin-connection-details.png)
+
+### 创建网桥
+
+默认模式下是作为NAT模式，如果需要使用网桥模式，则需要配置，参考如下：
+
+在`/etc/sysconfig/network-scripts/`下新建ifcfg-virbr0
+
+```
+TYPE=Bridge
+BOOTPROTO=static
+DEVICE=virbr0
+ONBOOT=yes
+IPADDR=192.168.1.172
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1
+DNS1=210.22.84.3
+DELAY=0
+```
+
+修改网络配置（比如：ifcfg-em1），注释5行，最后添加1行
+
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=em1
+UUID=c509254c-88e3-4718-8e51-e38df2424569
+DEVICE=em1
+ONBOOT=yes
+#IPADDR=192.168.1.172
+#DNS1=210.22.84.3
+#NETMASK=255.255.255.0
+#PREFIX=24
+#GATEWAY=192.168.1.1
+IPV6_PRIVACY=no
+BRIDGE=virbr0
+```
 
 ## 安装guest
 
@@ -89,10 +142,10 @@ NAME=eth0
 UUID=5609329a-0c31-4f41-9990-21627f6451bb
 DEVICE=eth0
 ONBOOT=yes
-#IPADDR=192.168.1.239
+#IPADDR=192.168.122.200
 #NETMASK=255.255.255.0
 DNS1=210.22.84.3
-#GATEWAY=192.168.1.1
+#GATEWAY=192.168.122.1
 ZONE=public
 ```
 
@@ -114,14 +167,12 @@ NAME=eth0
 UUID=5609329a-0c31-4f41-9990-21627f6451bb
 DEVICE=eth0
 ONBOOT=yes
-IPADDR=192.168.122.2
+IPADDR=192.168.1.200
 NETMASK=255.255.255.0
 DNS1=210.22.84.3
-GATEWAY=192.168.122.1
+GATEWAY=192.168.1.1
 ZONE=public
 ```
-
-
 
 ## new image
 
