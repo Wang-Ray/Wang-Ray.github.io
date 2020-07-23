@@ -1,0 +1,9 @@
+---
+layout: post
+title: "实践设计模式之适配器模式（Adapter）"
+date: 2018-08-11 11:08:00 +0800
+categories: Design
+tags: design-pattern adapter
+---
+
+**将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。**
