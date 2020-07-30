@@ -28,9 +28,9 @@ $ sudo ipsec listalgs  # 列出支持算法
 安装`strongswan`的相关插件，支持更多的安全算法，参考如下：
 
 ```shell
-$ apt install libcharon-extra-plugins
-$ apt install libstrongswan-standard-plugins
-$ apt install libstrongswan-extra-plugins
+$ sudo apt install libcharon-extra-plugins
+$ sudo apt install libstrongswan-standard-plugins
+$ sudo apt install libstrongswan-extra-plugins
 ```
 
 通过如下命令可以查询vpn服务端的安全算法。
