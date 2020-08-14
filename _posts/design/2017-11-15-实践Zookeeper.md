@@ -135,6 +135,10 @@ server.3=10.10.26.24:2881:3881
 
 ## 客户端
 
+### 命令行
+
+zkCli.sh/zkCli.cmd
+
 ### 可视化客户端
 
 [ZooInspector](https://github.com/apache/zookeeper/tree/b79af153d0f98a4f3f3516910ed47234d7b3d74e/src/contrib/zooinspector)
