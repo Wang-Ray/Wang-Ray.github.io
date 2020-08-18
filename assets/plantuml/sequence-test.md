@@ -1,5 +1,5 @@
 ```plantuml
-@startuml component
+@startuml
 actor client
 node app
 database db
