@@ -1,10 +1,12 @@
 ```plantuml
 @startuml
 actor client
+node web
 node app
 database db
 
-db -> app
-app -> client
+client -> web
+web -> app
+app -> db
 @enduml
 ```
