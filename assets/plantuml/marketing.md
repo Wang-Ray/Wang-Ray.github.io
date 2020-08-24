@@ -9,7 +9,10 @@ frame 营销活动 {
     component 促销
 }
 frame 权益 {
-    component 优惠券
+    component 优惠券 {
+        component 立减券
+        component 满减券
+    }
     component 红包
     component 积分
     component 豆
