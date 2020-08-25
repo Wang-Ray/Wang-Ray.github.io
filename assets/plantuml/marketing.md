@@ -15,7 +15,6 @@ frame 权益 {
     }
     component 红包
     component 积分
-    component 豆
 }
 营销活动 --> 权益
 
