@@ -12,7 +12,15 @@ tags: design zookeeper
 
 ### Session
 
-sessionTimeout，sessionId
+sessionId：session编号
+
+sessionTimeout：回话最大允许空闲时间，超过则session过期，一旦过期，临时节点和watcher全部清除。
+
+```
+2020-09-03 17:10:06.043 DEBUG [main-SendThread(127.0.0.1:2181)] org.apache.zookeeper.ClientCnxn$SendThread:742 >> Got ping response for sessionid: 0x100013eba9b0005 after 1ms
+```
+
+
 
 ### Znode
 
