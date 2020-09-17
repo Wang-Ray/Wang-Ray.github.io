@@ -7,6 +7,8 @@ frame frontendArea {
 frame webApplicationArea {
     node webapplication1
     node webapplication2
+}
+frame gatewayArea {
     node gateway1
     node gateway2
 }
@@ -20,6 +22,7 @@ frame databaseArea {
 }
 
 frontendArea -> webApplicationArea
+frontendArea -> gatewayArea
 webApplicationArea -> applicationArea
 applicationArea -> databaseArea
 @enduml
