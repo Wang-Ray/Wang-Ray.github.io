@@ -6,4 +6,4 @@ categories: Java
 tags: database MQ RocketMQ
 ---
 
-[Sharding-Sphere](http://shardingjdbc.io/)是一个开源的分布式数据库中间件套件，包含[Sharding-JDBC](/2018/07/11/实践数据库中间件之Sharding-JDBC.html)、[Sharding-Proxy](/2018/07/11/实践数据库中间件之Sharding-Proxy.html)和[Sharding-Sidecar](/2018/07/11/实践数据库中间件之Sharding-Sidecar.html)。
+[Apache RocketMQ](https://rocketmq.apache.org/) is an unified messaging engine, lightweight data processing platform. 

@@ -73,3 +73,9 @@ For reference, the example above can be compared to the following Spring XML con
 the examples are equivalent save the setting of the thread name prefix of the Executor; this is because the the task:namespace executor element does not expose such an attribute. This demonstrates how the code-based approach allows for maximum configurability through direct access to actual componentry.
 
 Note: In the above example the `ThreadPoolTaskExecutor` is not a fully managed Spring Bean. Add the `@Bean` annotation to the `getAsyncExecutor()`method if you want a fully managed bean. In such circumstances it is no longer necessary to manually call the `executor.initialize()` method as this will be invoked automatically when the bean is initialized.
+
+
+
+### 线程
+
+默认线程池`SimpleAsyncTaskExecutor`，线程名SimpleAsyncTaskExecutor-1，SimpleAsyncTaskExecutor-2
