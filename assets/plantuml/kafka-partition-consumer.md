@@ -20,14 +20,14 @@ package consumer-group3 {
     component consumer6
 }
 
-consumer1 -> partition1
-consumer1 -> partition2
+consumer1 --> partition1
+consumer1 --> partition2
 
-consumer2 -> partition1
-consumer3 -> partition2
+consumer2 --> partition1
+consumer3 --> partition2
 
-consumer4 -> partition1
-consumer5 -> partition2
+consumer4 --> partition1
+consumer5 --> partition2
 
 @enduml
 ```

@@ -21,9 +21,10 @@ frame databaseArea {
     database db2
 }
 
-frontendArea -> webApplicationArea
-frontendArea -> gatewayArea
-webApplicationArea -> applicationArea
-applicationArea -> databaseArea
+frontendArea --> webApplicationArea
+frontendArea --> gatewayArea
+webApplicationArea --> applicationArea
+gatewayArea --> applicationArea
+applicationArea --> databaseArea
 @enduml
 ```

@@ -13,7 +13,7 @@ frame databaseArea {
     database db2
 }
 
-frontendArea -> applicationArea
-applicationArea -> databaseArea
+frontendArea --> applicationArea
+applicationArea --> databaseArea
 @enduml
 ```
