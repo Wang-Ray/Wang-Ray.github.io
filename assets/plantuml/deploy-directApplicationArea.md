@@ -1,8 +1,8 @@
 ```plantuml
 @startuml
 frame frontendArea {
-    node ios
-    node android
+    node ios和android
+    node web
 }
 frame intranet {
     frame applicationArea {
