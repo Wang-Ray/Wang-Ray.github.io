@@ -95,7 +95,7 @@ Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-c
 
 ## 集群
 
-![zookeeper cluster](/images/zookeeper-cluster.jpeg)
+![zookeeper cluster](/images/zookeeper-cluster.png)
 
 ![zookeeper cluster role](/images/zookeeper-cluster-role.jpeg)
 
