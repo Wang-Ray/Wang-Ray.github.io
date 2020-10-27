@@ -6,7 +6,9 @@ categories: Java
 tags: spring property
 ---
 
-`@EnableConfigurationProperties` Enable support for `@ConfigurationProperties` annotated beans. `@ConfigurationProperties` beans can be registered in the standard way (for example using `@Bean` methods) or, for convenience, can be specified directly on this annotation.
+`@EnableConfigurationProperties` enable support for `@ConfigurationProperties` annotated beans. `@ConfigurationProperties` beans can be registered in the standard way (for example using `@Bean` methods) or, for convenience, can be specified directly on this annotation.
+
+Configuration
 
 ```java
 @Configuration
@@ -14,7 +16,7 @@ tags: spring property
 @EnableConfigurationProperties(ServerProperties.class)
 ```
 
-
+配置类
 
 ```java
 @ConfigurationProperties(prefix="my")

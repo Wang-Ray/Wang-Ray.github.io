@@ -151,7 +151,7 @@ private Integer price;
 
 ### @ConfigurationProperties
 
-为了能够更加方便的分门别类的定义和使用属性，@ConfigurationProperties能够将相关属性自动绑定到Java Bean【通常称为属性配置类】，会自动进行类型转换，还支持嵌套属性。使用配置类有三种方式，第一种是用@Component定义配置bean，第二种是绑定到@Bean上面，第三种是使用@EnableConfigurationProperties。
+为了能够更加方便的分门别类的定义和使用属性，同时相较于@Value逐个配置，@ConfigurationProperties能够将相关属性批量自动绑定到Spring Bean上，会自动进行类型转换，还支持嵌套属性。一般有三种方式，第一种是配合@Component，第二种是配合@Bean，第三种是使用@EnableConfigurationProperties。
 
 Note that contrary to `@Value`, SpEL expressions are not evaluated since property values are externalized.
 
@@ -185,7 +185,7 @@ my.servers[0]=dev.bar.com
 my.servers[1]=foo.bar.com
 ```
 
-第一种：在属性配置类类上加如下注解
+第一种：在属性配置类类上
 
 ```java
 @Component
