@@ -45,6 +45,5 @@ tags: Java Logging Spring-Boot
 		</dependency>
 	</dependencies>
 </project>
-
 ```
 
