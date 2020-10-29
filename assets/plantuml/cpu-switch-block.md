@@ -16,6 +16,8 @@ frame task {
     node task1
     node task2
     node taskn
+    interface database
+    interface rpc
 }
 
 cpu1 --> thread
@@ -25,5 +27,8 @@ cpum --> thread
 thread1 --> task1
 thread2 --> task2
 threadn --> taskn
+
+task1 --> database
+task1 --> rpc
 @enduml
 ```
