@@ -6,7 +6,7 @@ categories: Java
 tags: spring spring-boot datasource
 ---
 
-基于数据库的Java应用涉及两个概念，一个是使用哪种**数据库（Database）**，比如：Oracle、MySQL和嵌入式数据库（比如：h2/derby/hsql）等，另一个是使用哪种**数据源（DataSource，也即数据库连接池）**，比如：tomcat数据源/Hikari/DBCP1/DBCP2/SimpleDriverDataSource等，数据库和数据源可以任意搭配。
+基于数据库的Java应用涉及两个概念，一个是使用哪种**数据库（Database）**，比如：Oracle、MySQL和嵌入式数据库（比如：h2/derby/hsql）等，另一个是使用哪种**数据源（DataSource，也即数据库连接池（connection pool））**，比如：tomcat数据源/Hikari/DBCP1/DBCP2/SimpleDriverDataSource等，数据库和数据源可以任意搭配。
 
 spring boot自动配置支持多种数据源（DataSourceAutoConfiguration），比如：**Tomcat数据源/Hikari/DBCP1/DBCP2连接池和SimpleDriverDataSource**，根据相应class（DataSourcePoolMetadataProvidersConfiguration）或spring.datasource.type（DataSourceProperties）属性的取值来判断，可取值包括如下：
 
@@ -16,6 +16,8 @@ spring boot自动配置支持多种数据源（DataSourceAutoConfiguration），
 * org.apache.commons.dbcp2.BasicDataSource
 
 **嵌入式数据库数据源**默认使用嵌入式数据库（EmbeddedDatabase）和**SimpleDriverDataSource**数据源（spring-jdbc提供），比其他数据源优先级低。
+
+spring boot 1.x 默认数据源是tomcat数据源，spring boot 2.x 默认数据源是Hikari
 
 ## 通用配置
 
