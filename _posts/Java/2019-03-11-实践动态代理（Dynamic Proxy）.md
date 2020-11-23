@@ -849,7 +849,7 @@ Class<?>[] interfaces：接口
 
 ### InvocationHandler
 
-一般而言会与被代理类有关，进行前置、后置等处理外，调用被代理类实例
+一般而言会与被代理实例有关，进行前置、后置等处理外，调用被代理类实例
 
 ```java
 package java.lang.reflect;
@@ -976,9 +976,8 @@ public class HelloServiceInvocationHandler implements InvocationHandler {
 
 ```java
 public class JdkProxyFactory<T> {
-	public T getProxy(T target) {
-        HelloServiceInvocationHandler helloServiceInvocationHandler = new HelloServiceInvocationHandler(target);
-        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), helloServiceInvocationHandler);
+	public T getProxy(Class<T> interfaces, InvocationHandler handler) {
+        return (T) Proxy.newProxyInstance(interfaces.getClassLoader(), new Class[]{interfaces}, handler);
     }
 }
 ```
