@@ -4,6 +4,8 @@ categories: Java
 tags: java WebServer Tomcat Netty Jetty Undertow
 ---
 
+Spring Boot 2
+
 ## WebServer
 
 ![WebServer](/images/WebServer.png)

@@ -13,8 +13,8 @@ frame thread {
 }
 
 frame task {
-    node task1_databaes
-    node task2_rpc
+    node task1_database
+    node task1_rpc
     node taskm
 }
 
