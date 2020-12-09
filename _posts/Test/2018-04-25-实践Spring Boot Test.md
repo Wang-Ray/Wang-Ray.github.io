@@ -8,7 +8,7 @@ tags: test spring-boot-test spring-boot
 
 ## @SpringBootTest
 
-针对`Spring Boot`应用的测试支持（1.4.0版本加入），当`webEnvironment`为`MOCK`时，默认可以注入`MockMvc`，当`webEnvironment`为`RANDOM_PORT`和`DEFINED_PORT`时，默认可以注入[TestRestTemplate](/测试/2018/04/24/实践TestRestTemplate/)或[WebTestClient](/java/2018/04/23/实践WebClient/)。
+针对`Spring Boot`应用的测试支持（1.4.0版本加入），当`webEnvironment`为`MOCK`时，默认可以注入`MockMvc`（比如借助`@AutoConfigurationMockMvc`），当`webEnvironment`为`RANDOM_PORT`和`DEFINED_PORT`时，默认可以注入[TestRestTemplate](/测试/2018/04/24/实践TestRestTemplate/)或[WebTestClient](/java/2018/04/23/实践WebClient/)。
 
 ### value或properties
 
@@ -154,6 +154,14 @@ public class WebMvcTestTests {
     }
 }
 ```
+
+## @WebFluxTest
+
+跟@WebMvcTest类似
+
+## @AutoConfigureWebTestClient
+
+## @AutoConfigureWebFlux
 
 ## @SpringApplicationConfiguration
 
