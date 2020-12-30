@@ -252,7 +252,7 @@ app -> client
 
 
 
-配置渲染服务器，`本地`或`官方`
+配置渲染服务器：
 
 ```json
 "plantuml.render": "PlantUMLServer",
