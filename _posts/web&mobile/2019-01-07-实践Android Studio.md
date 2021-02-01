@@ -16,6 +16,20 @@ Consider using an x86 system image on an x86 host for better emulation performan
 
 
 
+JDK
+
+SDK
+
+local.properties的sdk.dir
+
+NDK
+
+local.properties的ndk.dir
+
+
+
+
+
 ### 模拟器kvm（/dev/kvm）权限问题
 
 第一步:安装qemu-kvm，变更/dev/kvm的组从root-->kvm:
