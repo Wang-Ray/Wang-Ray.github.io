@@ -55,6 +55,10 @@ workspace可以理解为包含多个目录的一种组织结构，可以保存�
 
 安装Java Extension Pack扩展
 
+## Scala
+
+安装Metals扩展
+
 ## Python
 
 支持virtualenv
