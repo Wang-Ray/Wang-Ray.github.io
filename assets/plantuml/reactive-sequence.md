@@ -1,5 +1,6 @@
 ```plantuml
 @startuml
+autonumber
 Publisher -> Subscriber: subscribe(Subscriber)
 
 Subscriber ->  Subscription: onSubcribe(Subscription)
