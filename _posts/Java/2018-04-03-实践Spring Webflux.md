@@ -50,8 +50,111 @@ public interface HttpHandler {
 	Mono<Void> handle(ServerHttpRequest request, ServerHttpResponse response);
 
 }
-
 ```
+
+handle的返回值是`Mono<Void>`
+
+### 容器适配
+
+#### ReactorHttpHandlerAdapter
+
+```java
+	@Override
+	public Mono<Void> apply(HttpServerRequest reactorRequest, HttpServerResponse reactorResponse) {
+		NettyDataBufferFactory bufferFactory = new NettyDataBufferFactory(reactorResponse.alloc());
+		try {
+			ReactorServerHttpRequest request = new ReactorServerHttpRequest(reactorRequest, bufferFactory);
+			ServerHttpResponse response = new ReactorServerHttpResponse(reactorResponse, bufferFactory);
+
+			if (request.getMethod() == HttpMethod.HEAD) {
+				response = new HttpHeadResponseDecorator(response);
+			}
+
+			return this.httpHandler.handle(request, response)
+					.doOnError(ex -> logger.trace(request.getLogPrefix() + "Failed to complete: " + ex.getMessage()))
+					.doOnSuccess(aVoid -> logger.trace(request.getLogPrefix() + "Handling completed"));
+		}
+		catch (URISyntaxException ex) {
+			if (logger.isDebugEnabled()) {
+				logger.debug("Failed to get request URI: " + ex.getMessage());
+			}
+			reactorResponse.status(HttpResponseStatus.BAD_REQUEST);
+			return Mono.empty();
+		}
+	}
+```
+
+#### ServletHttpHandlerAdapter
+
+```java
+	@Override
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		// Check for existing error attribute first
+		if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {
+			Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);
+			throw new ServletException("Failed to create response content", ex);
+		}
+
+		// Start async before Read/WriteListener registration
+		AsyncContext asyncContext = request.startAsync();
+		asyncContext.setTimeout(-1);
+
+		ServletServerHttpRequest httpRequest;
+		try {
+			httpRequest = createRequest(((HttpServletRequest) request), asyncContext);
+		}
+		catch (URISyntaxException ex) {
+			if (logger.isDebugEnabled()) {
+				logger.debug("Failed to get request  URL: " + ex.getMessage());
+			}
+			((HttpServletResponse) response).setStatus(400);
+			asyncContext.complete();
+			return;
+		}
+
+		ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext, httpRequest);
+		if (httpRequest.getMethod() == HttpMethod.HEAD) {
+			httpResponse = new HttpHeadResponseDecorator(httpResponse);
+		}
+
+		AtomicBoolean isCompleted = new AtomicBoolean();
+		HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted, httpRequest);
+		asyncContext.addListener(listener);
+
+		HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted, httpRequest);
+        // 订阅
+		this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);
+	}
+```
+
+#### UndertowHttpHandlerAdapter
+
+```java
+	@Override
+	public void handleRequest(HttpServerExchange exchange) {
+		UndertowServerHttpRequest request = null;
+		try {
+			request = new UndertowServerHttpRequest(exchange, getDataBufferFactory());
+		}
+		catch (URISyntaxException ex) {
+			if (logger.isWarnEnabled()) {
+				logger.debug("Failed to get request URI: " + ex.getMessage());
+			}
+			exchange.setStatusCode(400);
+			return;
+		}
+		ServerHttpResponse response = new UndertowServerHttpResponse(exchange, getDataBufferFactory(), request);
+
+		if (request.getMethod() == HttpMethod.HEAD) {
+			response = new HttpHeadResponseDecorator(response);
+		}
+
+		HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(exchange, request);
+		this.httpHandler.handle(request, response).subscribe(resultSubscriber);
+	}
+```
+
+
 
 ### HttpWebHandlerAdapter
 
