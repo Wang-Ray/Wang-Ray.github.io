@@ -90,6 +90,7 @@ tags: Java Thread concurrency multi-thread ThreadPoolExecutor
         Worker(Runnable firstTask) {
             setState(-1); // inhibit interrupts until runWorker
             this.firstTask = firstTask;
+            // 一个Worker一个Thread
             this.thread = getThreadFactory().newThread(this);
         }
 
