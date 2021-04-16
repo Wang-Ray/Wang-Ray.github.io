@@ -1430,6 +1430,36 @@ public static Mono<ServerResponse> sendTimePerSec(ServerRequest serverRequest) {
     }
 ```
 
+## 线程模型
+
+默认线程池跟cpu核数一致（最小值4）
+
+```
+"reactor-http-epoll-2" #33 daemon prio=5 os_prio=0 tid=0x00007f43782f3000 nid=0x1e92 runnable [0x00007f43d4683000]
+   java.lang.Thread.State: RUNNABLE
+        at io.netty.channel.epoll.Native.epollWait(Native Method)
+        at io.netty.channel.epoll.Native.epollWait(Native.java:129)
+        at io.netty.channel.epoll.Native.epollWait(Native.java:122)
+        at io.netty.channel.epoll.EpollEventLoop.epollWaitNoTimerChange(EpollEventLoop.java:290)
+        at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:347)
+        at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+        at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+        at java.lang.Thread.run(Thread.java:748)
+监听
+"reactor-http-epoll-1" #23 daemon prio=5 os_prio=0 tid=0x00007f43f0d24000 nid=0x1de4 runnable [0x00007f43d5fc0000]
+   java.lang.Thread.State: RUNNABLE
+        at io.netty.channel.epoll.Native.epollWait(Native Method)
+        at io.netty.channel.epoll.Native.epollWait(Native.java:129)
+        at io.netty.channel.epoll.Native.epollWait(Native.java:122)
+        at io.netty.channel.epoll.EpollEventLoop.epollWaitNoTimerChange(EpollEventLoop.java:290)
+        at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:347)
+        at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+        at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+        at java.lang.Thread.run(Thread.java:748)
+```
+
 
 
 ## 参考
