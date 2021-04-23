@@ -8,6 +8,16 @@ tags: Database DBVisualizer
 
 
 
+
+
+指定jdk
+
+```shell
+export INSTALL4J_JAVA_HOME=~/platform/jdk1.8.0_181_linux
+```
+
+
+
 ## 中文乱码
 
 Tools-》Tool Properties-》General-》Appearance-》Fonts
