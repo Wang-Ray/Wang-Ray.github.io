@@ -1,7 +1,8 @@
 ---
 layout: post
+title: 实践反应式编程之SmallRye Mutiny
 categories: Java
-tags: Java Throwable Error Exception RuntimeException unchecked
+tags: Java Throwable Mutiny Reactive Mutiny
 ---
 
 [SmallRye Mutiny](https://smallrye.io/smallrye-mutiny/) is a reactive programming library. Wait? Another one? Yes!
