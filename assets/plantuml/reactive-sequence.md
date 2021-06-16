@@ -1,10 +1,12 @@
 ```plantuml
 @startuml
-Publisher -> Subscriber: subscribe(Subscriber)
+Subscriber -> Publisher: subscribe(Subscriber)
 
-Subscriber ->  Subscription: onSubcribe(Subscription)
+Publisher ->  Subscriber: onSubcribe(Subscription)
 
-Subscription -> Publisher: request(Long)
+Subscriber -> Subscription: request(Long)
+
+Subscription -> Publisher: emit
 
 Publisher -> Subscriber: onNext(T)
 Publisher -> Subscriber: onError(Throwable)
