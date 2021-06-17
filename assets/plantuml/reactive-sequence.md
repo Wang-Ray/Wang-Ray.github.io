@@ -6,10 +6,11 @@ Publisher ->  Subscriber: onSubcribe(Subscription)
 
 Subscriber -> Subscription: request(Long)
 
-Subscription -> Publisher: emit
+Subscription -> Subscriber: onNext(T)
+Subscription -> Subscriber: onError(Throwable)
+Subscription -> Subscriber: onComplete()
 
-Publisher -> Subscriber: onNext(T)
-Publisher -> Subscriber: onError(Throwable)
-Publisher -> Subscriber: onComplete()
+Subscriber -> Subscription: cancel()
+
 @enduml
 ```

@@ -6,5 +6,10 @@ tags: java Reactor Mono Flux Publisher
 
 
 
-### MonoCompletionStage
+### MonoRunnable
 
+### MonoCallable
+
+### MonoSupplier
+
+### MonoCompletionStage
