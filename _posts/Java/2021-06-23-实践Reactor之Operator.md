@@ -1,8 +1,10 @@
 ---
 layout: post
 categories: Java
-tags: java Reactor Flux Mono Pubisher FluxOperator
+tags: java Reactor Flux Mono Pubisher Operator FluxOperator MonoOperator Reactive
 ---
+
+Operator在实现上是对Publisher的一种`包装`，Operator的结果依然是一个Publisher
 
 ## FluxOperator
 
