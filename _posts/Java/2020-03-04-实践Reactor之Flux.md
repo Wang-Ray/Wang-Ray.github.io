@@ -10,3 +10,6 @@ tags: java Reactor Flux Mono Pubisher
 
 ### FluxIterable
 
+### FluxGenerate
+
+### FluxCreate
