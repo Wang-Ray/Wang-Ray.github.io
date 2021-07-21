@@ -6,11 +6,11 @@ categories: Java
 tags: spring profile
 ---
 
-Spring 3.1引入了Profile，是一种条件化配置，基于运行时激活的Profile，会使用或忽略不同的Bean或配置类，以及属性文件和属性。一般用于不同的环境下使用不同的配置。激活方法包括：
+Spring 3.1引入了Profile，是一种条件化配置，基于运行时激活的Profile，实现动态配置，会使用或忽略不同的配置类、Bean、属性文件和属性等。一般用于不同的环境下使用不同的配置。激活方法包括：
 
 1. 设置spring.profiles.active属性可以激活相应的Profile
 2. Environment.setActiveProfiles("prod")
-3. @ActiveProfiles("prod")
+3. @Profile("prod")
 
 ## 应用于配置类的Profile
 
