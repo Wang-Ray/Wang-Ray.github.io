@@ -36,9 +36,40 @@ ID，文档的唯一编号，自定义或由Elasticsearch生成
 
 映射
 
-## cluster
+## 安装配置
 
 ```shell
+$ ./elasticsearch -h
+
+Option                Description                                               
+------                -----------                                               
+-E <KeyValuePair>     Configure a setting                                       
+-V, --version         Prints Elasticsearch version information and exits        
+-d, --daemonize       Starts Elasticsearch in the background                    
+-h, --help            Show help                                                 
+-p, --pidfile <Path>  Creates a pid file in the specified path on start         
+-q, --quiet           Turns off standard output/error streams logging in console
+-s, --silent          Show minimal output                                       
+-v, --verbose         Show verbose output  
+```
+
+
+
+### single
+
+elasticsearch.yml
+
+```
+network.host: 0.0.0.0
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+```
+
+
+
+### cluster
+
+```shell
+$ ./elasticsearch -Epath.data=data -Epath.logs=log
 $ ./elasticsearch -Epath.data=data2 -Epath.logs=log2
 $ ./elasticsearch -Epath.data=data3 -Epath.logs=log3
 ```

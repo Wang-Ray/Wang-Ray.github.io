@@ -10,13 +10,15 @@ tags: Database Logstash grok elastic elk
 
 
 
-## 样例 
+### 样例 1
 
 grok-pattern：
 
 ```
 %{TIMESTAMP_ISO8601:timestamp}\s+%{LOGLEVEL:loglevel}\s+%{INT:pid}\s+---\s+\[%{USERNAME:thread}]\s+%{USERNAME:logger}\s+:\s+%{GREEDYDATA:msg}
 ```
+
+备注：`[`需要转义`\[`
 
 采样：
 
@@ -40,6 +42,41 @@ grok-pattern：
       "@version" => "1",
        "message" => "2020-01-10 10:35:02.669 ERROR 10637 --- [http-nio-8088-exec-3] w.r.s.r.controller.HelloController       : receive request /hello?name=ac",
            "msg" => "receive request /hello?name=ac"
+}
+```
+
+
+
+### 样例2
+
+log-pattern：
+
+```
+[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] [%X{TRADE_ID}] [%logger{50}] - %msg%n
+```
+
+grok-pattern：
+
+```
+\[%{TIMESTAMP_ISO8601:timestamp}]\s+\[%{GREEDYDATA:thread}]\s+\[%{LOGLEVEL:loglevel}]\s+\[%{GREEDYDATA:traceId}]\s+\[%{USERNAME:logger}]\s+-\s+%{GREEDYDATA:msg}
+```
+
+采样：
+
+```
+[2021-09-02 08:53:53.247] [http-nio-8081-exec-8] [INFO] [] [c.zh3721.storecentre.webapp.common.utils.CodesUtil] - <<<加密>>>
+```
+
+结果：
+
+```
+{
+  "traceId": "100000",
+  "msg": "<<<加密>>>",
+  "loglevel": "INFO",
+  "logger": "c.zh3721.storecentre.webapp.common.utils.CodesUtil",
+  "thread": "http-nio-8081-exec-8",
+  "timestamp": "2021-09-02 08:53:53.247"
 }
 ```
 
@@ -148,6 +185,8 @@ LOGLEVEL ([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|
 ```
 
 ## 参考资料
+
+[在线*Grok Debug*工具,Grok校验|调试](https://www.baidu.com/link?url=Wnq5ukn_Ms74p4DvQuCStcWUMxox-AFazU66wdqxlpN5B6X-4hpIYe0rg8br4oH-sV_L0mQyc2jdDL0F6hLhGa&wd=&eqid=8848b7610000c339000000056130a156)
 
 [Grok Debugger](http://grokdebug.herokuapp.com/)
 

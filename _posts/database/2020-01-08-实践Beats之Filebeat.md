@@ -67,6 +67,66 @@ $ ./filebeat modules list
 
 ## output
 
+```
+{
+          "@version" : "1",
+          "log" : {
+            "file" : {
+              "path" : "/app/third-party-service/log/zhkj-webapi.log"
+            },
+            "offset" : 351812
+          },
+          "message" : """[2021-09-03 12:18:51.723] [http-nio-8080-exec-1] [INFO] [] [c.z.k.a.m.i.service.CabinetAsynNotify] - 通知转发: {"actionType":2,"code":200,"deviceId":"868089050237340","gridNo":"02&01","reqNo":"200000000561320210519"}""",
+          "ecs" : {
+            "version" : "1.5.0"
+          },
+          "host" : {
+            "containerized" : false,
+            "os" : {
+              "platform" : "centos",
+              "version" : "7 (Core)",
+              "kernel" : "3.10.0-957.el7.x86_64",
+              "codename" : "Core",
+              "name" : "CentOS Linux",
+              "family" : "redhat"
+            },
+            "architecture" : "x86_64",
+            "mac" : [
+              "52:54:00:34:d7:d4"
+            ],
+            "name" : "dev-1-202",
+            "ip" : [
+              "192.168.1.202",
+              "fe80::39ca:ea1d:2de2:c04",
+              "fe80::c31:cdf:e1b9:c9fe",
+              "fe80::99df:f4da:4cfa:c141"
+            ],
+            "hostname" : "dev-1-202",
+            "id" : "4019616339ee41f2a235a10f31397ac7"
+          },
+          "@timestamp" : "2021-09-03T04:18:52.572Z",
+          "agent" : {
+            "type" : "filebeat",
+            "version" : "7.7.1",
+            "ephemeral_id" : "b1d610c2-188f-4515-b03e-e836bc78b157",
+            "hostname" : "dev-1-202",
+            "id" : "4c3f3598-cb25-4098-979d-b1dbfeb54e54"
+          },
+          "input" : {
+            "type" : "log"
+          },
+          "tags" : [
+            "beats_input_codec_plain_applied"
+          ]
+        },
+        "sort" : [
+          1630642732572
+        ]
+      }
+```
+
+
+
 ### logstash
 
 ### elasticsearch
