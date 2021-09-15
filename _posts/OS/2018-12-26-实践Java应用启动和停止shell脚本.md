@@ -17,7 +17,7 @@ APP_NAME=sample-service
 
 # not prod
 JVM_DEBUG_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8686"
-JAVA_OPTS="-server -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:+DisableExplicitGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime"
+JAVA_OPTS="-server -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:+DisableExplicitGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+HeapDumpOnOutOfMemoryError"
 # prod
 if [ -z $ENV ]
 then
@@ -25,7 +25,7 @@ then
     export ENV=pro
     export APOLLO_META=http://172.19.177.117
     JVM_DEBUG_OPTS=""
-    JAVA_OPTS="-server -Xms4G -Xmx4G -Xmn2G -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:+DisableExplicitGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime"
+    JAVA_OPTS="-server -Xms4G -Xmx4G -Xmn2G -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+AlwaysPreTouch -XX:AutoBoxCacheMax=20000 -XX:+DisableExplicitGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+HeapDumpOnOutOfMemoryError"
 fi
 
 usage() {
