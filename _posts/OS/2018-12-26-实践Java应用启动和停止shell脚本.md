@@ -11,6 +11,9 @@ tags: linux find
 ```shell
 #!/bin/bash
 
+source ~/.bashrc
+BASEPATH=$(cd `dirname $0`; pwd)
+
 PROG_NAME=$0
 ACTION=$1
 APP_NAME=sample-service
@@ -42,7 +45,7 @@ start_application() {
     fi
 
     echo "starting java process"
-    nohup java $JAVA_OPTS $JVM_DEBUG_OPTS -jar *.jar >/dev/null 2>&1 &
+    nohup java $JAVA_OPTS $JVM_DEBUG_OPTS -jar BASEPATH/*.jar >/dev/null 2>&1 &
     echo "started java process"
 }
 

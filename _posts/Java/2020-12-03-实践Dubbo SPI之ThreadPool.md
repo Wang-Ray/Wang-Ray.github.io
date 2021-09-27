@@ -30,7 +30,7 @@ public interface ThreadPool {
 
 
 
-### Dubbo 2.7.6
+### Dubbo 2.7.13
 
 Reject-edExecutionHandler为继承AbortPolicy的AbortPolicyWithReport
 
@@ -43,7 +43,7 @@ Reject-edExecutionHandler为继承AbortPolicy的AbortPolicyWithReport
 | queues      | 0                 | 队列长度                     |
 | alive       | 60*1000           | 冗余线程可空闲时间，单位毫秒 |
 
-备注：由于使用了dubbo-spring-boot-starter 2.7.6，也可以直接配置驱动，例如：
+备注：由于使用了dubbo-spring-boot-starter 2.7.13，也可以直接配置驱动，例如：
 
 ```properties
 dubbo.protocol.threadpool=cached
@@ -62,7 +62,7 @@ dubbo.protocol.queues=0
 
 alive固定为0
 
-备注：由于使用了dubbo-spring-boot-starter 2.7.6，也可以直接配置驱动，例如：
+备注：由于使用了dubbo-spring-boot-starter 2.7.13，也可以直接配置驱动，例如：
 
 ```properties
 dubbo.protocol.threadpool=fixed
@@ -80,7 +80,7 @@ dubbo.protocol.queues=0
 
 alive固定为Long.MAX_VALUE，可以理解为线程不会被回收
 
-备注：由于使用了dubbo-spring-boot-starter 2.7.6，也可以直接配置驱动，例如：
+备注：由于使用了dubbo-spring-boot-starter 2.7.13，也可以直接配置驱动，例如：
 
  ```properties
 dubbo.protocol.threadpool=limited
