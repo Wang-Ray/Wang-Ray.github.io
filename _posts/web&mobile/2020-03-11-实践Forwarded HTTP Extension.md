@@ -1,5 +1,6 @@
 ---
 layout: post
+title: 实践Forwarded HTTP Extension
 categories: 移动互联网
 tags: web http X-Forwarded-For X-Forwareded-Host X-Forwarded-Port X-Forwarded-Proto Forwarded
 ---
