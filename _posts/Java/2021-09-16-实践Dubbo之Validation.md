@@ -17,8 +17,6 @@ tags: Java Dubbo Validation
 
 dubbo 2.7.13
 
-
-
 ```xml
 <dependency>
 	<groupId>javax.validation</groupId>
@@ -86,7 +84,7 @@ javax.validation.ValidationException: HV000183: Unable to initialize 'javax.el.E
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:na]
 ```
 
-参数校验不通过异常堆栈：
+非泛化调用参数校验不通过异常堆栈（单元测试）：
 ```
 javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo.sample.SampleRemoteService, method: getBook, cause: [ConstraintViolationImpl{interpolatedMessage='id不能大于9999', propertyPath=id, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='id不能大于9999'}, ConstraintViolationImpl{interpolatedMessage='name至少6个字符长度', propertyPath=name, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='name至少6个字符长度'}]
 	at org.apache.dubbo.validation.filter.ValidationFilter.invoke(ValidationFilter.java:96) ~[dubbo-2.7.13.jar:2.7.13]
@@ -132,8 +130,42 @@ javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235) [junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:na]
 ```
+非泛化调用参数校验不通过异常堆栈（consumer）：
+
+```
+javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo.sample.SampleRemoteService, method: getBook, cause: [ConstraintViolationImpl{interpolatedMessage='id不能小于1000', propertyPath=id, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='id不能小于1000'}, ConstraintViolationImpl{interpolatedMessage='name至少6个字符长度', propertyPath=name, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='name至少6个字符长度'}]
+        at org.apache.dubbo.validation.filter.ValidationFilter.invoke(ValidationFilter.java:96) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.dubbo.filter.TraceFilter.invoke(TraceFilter.java:77) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.TimeoutFilter.invoke(TimeoutFilter.java:46) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.monitor.support.MonitorFilter.invoke(MonitorFilter.java:91) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.ExceptionFilter.invoke(ExceptionFilter.java:52) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.GenericFilter.invoke(GenericFilter.java:192) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.ClassLoaderFilter.invoke(ClassLoaderFilter.java:38) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.EchoFilter.invoke(EchoFilter.java:41) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.filter.ContextFilter.invoke(ContextFilter.java:129) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.FilterNode.invoke(FilterNode.java:61) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol$1.reply(DubboProtocol.java:148) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:100) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:175) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51) ~[dubbo-2.7.13.jar:2.7.13]
+        at org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57) ~[dubbo-2.7.13.jar:2.7.13]
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+        at org.apache.dubbo.common.threadlocal.InternalRunnable.run(InternalRunnable.java:41) ~[dubbo-2.7.13.jar:2.7.13]
+        at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+```
+
 泛化调用时参数校验不通过异常堆栈：
 有个疑问：为啥是`com.alibaba.dubbo.rpc.service.GenericException`，而不是`org.apache.dubbo.rpc.service.GenericException`
+
 ```
 com.alibaba.dubbo.rpc.service.GenericException: javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo.sample.SampleRemoteService, method: getBook, cause: [ConstraintViolationImpl{interpolatedMessage='name至少6个字符长度', propertyPath=name, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='name至少6个字符长度'}, ConstraintViolationImpl{interpolatedMessage='id不能小于1000', propertyPath=id, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='id不能小于1000'}]
 javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo.sample.SampleRemoteService, method: getBook, cause: [ConstraintViolationImpl{interpolatedMessage='name至少6个字符长度', propertyPath=name, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='name至少6个字符长度'}, ConstraintViolationImpl{interpolatedMessage='id不能小于1000', propertyPath=id, rootBeanClass=class wang.ray.dubbo.sample.BookRequest, messageTemplate='id不能小于1000'}]
@@ -190,8 +222,19 @@ javax.validation.ValidationException: Failed to validate service: wang.ray.dubbo
 	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_152]
 ```
 
-
 Dubbo客户端会进行校验
+
+
+
+
+
+```java
+(t instanceof ValidationException) {
+            return ApiResultDTO.fail(ExceptionCode.VALIDATION_ERROR, t.getMessage().substring(t.getMessage().indexOf("interpolatedMessage='") + 21, t.getMessage().indexOf("',")));
+        } 
+```
+
+
 
 ### ValidationFilter.java
 
