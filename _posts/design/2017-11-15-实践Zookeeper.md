@@ -103,6 +103,8 @@ Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-c
 
 在一台服务器上部署3个节点，实现伪集群
 
+将zookeeper拷贝两份，一共3份，配置参考如下：
+
 ```properties
 tickTime=2000
 dataDir=/app/software/zookeeper-3.4.9-1/data
@@ -127,6 +129,8 @@ $ ./zkCli.sh -server localhost:2181 localhost:2182 localhost:2183
 ### 真实集群
 
 在三台服务器上分别部署一个节点，实现真实集群
+
+在${dataDir}下面创建一个myid文件，内容为顺序号，server.x 中的x对应，第一个zookeeper就是1，第二个zookeeper就是2，没有先后顺序，只是不能重复 。
 
 ```properties
 tickTime=2000
