@@ -108,3 +108,14 @@ protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 ## @SpringBootApplication
 
 有`@SpringBootConfiguration`（`@Configuration`）、`@EnableAutoConfiguration`和`@ComponentScan`组成。
+
+
+
+## QA
+
+### InetAddress.getLocalHost().getHostName() took 90037 milliseconds to respond
+
+```
+2022-06-20 14:56:33,769 WARN [main] o.s.boot.StartupInfoLogger [StartupInfoLogger.java : 116] InetAddress.getLocalHost().getHostName() took 90037 milliseconds to respond. Please verify your network configuration.
+```
+

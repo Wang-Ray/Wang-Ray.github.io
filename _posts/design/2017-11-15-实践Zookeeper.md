@@ -143,6 +143,33 @@ server.2=10.10.26.23:2881:3881
 server.3=10.10.26.24:2881:3881
 ```
 
+ node1
+
+```shell
+$ ./zkServer.sh status
+ZooKeeper JMX enabled by default
+Using config: /app/zookeeper-3.4.14/bin/../conf/zoo.cfg
+Mode: leader
+```
+
+node2
+
+```shell
+$ ./zkServer.sh status
+ZooKeeper JMX enabled by default
+Using config: /app/zookeeper-3.4.14/bin/../conf/zoo.cfg
+Mode: follower
+```
+
+node3
+
+```shell
+$ ./zkServer.sh status
+ZooKeeper JMX enabled by default
+Using config: /app/zookeeper-3.4.14/bin/../conf/zoo.cfg
+Mode: follower
+```
+
 
 
 ## 客户端
