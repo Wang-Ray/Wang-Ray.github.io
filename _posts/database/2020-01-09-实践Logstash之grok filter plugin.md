@@ -186,7 +186,7 @@ LOGLEVEL ([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|
 
 ## 参考资料
 
-[在线*Grok Debug*工具,Grok校验|调试](https://www.baidu.com/link?url=Wnq5ukn_Ms74p4DvQuCStcWUMxox-AFazU66wdqxlpN5B6X-4hpIYe0rg8br4oH-sV_L0mQyc2jdDL0F6hLhGa&wd=&eqid=8848b7610000c339000000056130a156)
+[在线Grok Debug工具，Grok校验|调试 (5axxw.com)](https://www.5axxw.com/tools/v2/grok.html)
 
 [Grok Debugger](http://grokdebug.herokuapp.com/)
 
