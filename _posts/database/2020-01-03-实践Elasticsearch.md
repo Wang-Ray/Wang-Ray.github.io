@@ -90,6 +90,32 @@ epoch      timestamp cluster       status node.total node.data shards pri relo i
 
 ## index
 
+创建索引
+
+```shell
+$ curl -Xput "http://192.168.0.22:9200/test_index" -H 'Content-Type: application/json' -d'
+{
+	"mappings": {
+		"properties": {
+			"goodId": {
+				"type": "long"
+			},
+			"goodName": {
+				"type": "text",
+				"analyzer": "ik_max_word"
+			}
+		}
+	}
+}
+'
+```
+
+
+
+## data
+
+向索引添加数据，如果索引不存在会自动创建索引（`text类型`的会自动创建`{field}.keyword`）
+
 ### single
 
 ```shell
@@ -477,6 +503,213 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
 '
 
 ```
+
+## analyzer
+
+analyzer分存储analyzer和search analyzer，当search analyzer未单独设定时使用储存analyzer。
+
+默认analyzer是standard，中文是按汉字一个一个拆成token，比如：“中华人民”拆成“中”，“华”，“人”和”民“四个token，英文句号（.）和下划线（_）不作为拆分符，比如“org.springframework.boot”是一个token，“ik_max_word”是一个token
+
+```
+$ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌"}'
+
+{
+	"tokens": [
+		{
+			"token": "中",
+			"start_offset": 0,
+			"end_offset": 1,
+			"type": "<IDEOGRAPHIC>",
+			"position": 0
+		},
+		{
+			"token": "华",
+			"start_offset": 1,
+			"end_offset": 2,
+			"type": "<IDEOGRAPHIC>",
+			"position": 1
+		},
+		{
+			"token": "人",
+			"start_offset": 2,
+			"end_offset": 3,
+			"type": "<IDEOGRAPHIC>",
+			"position": 2
+		},
+		{
+			"token": "民",
+			"start_offset": 3,
+			"end_offset": 4,
+			"type": "<IDEOGRAPHIC>",
+			"position": 3
+		},
+		{
+			"token": "共",
+			"start_offset": 4,
+			"end_offset": 5,
+			"type": "<IDEOGRAPHIC>",
+			"position": 4
+		},
+		{
+			"token": "和",
+			"start_offset": 5,
+			"end_offset": 6,
+			"type": "<IDEOGRAPHIC>",
+			"position": 5
+		},
+		{
+			"token": "国",
+			"start_offset": 6,
+			"end_offset": 7,
+			"type": "<IDEOGRAPHIC>",
+			"position": 6
+		},
+		{
+			"token": "国",
+			"start_offset": 7,
+			"end_offset": 8,
+			"type": "<IDEOGRAPHIC>",
+			"position": 7
+		},
+		{
+			"token": "歌",
+			"start_offset": 8,
+			"end_offset": 9,
+			"type": "<IDEOGRAPHIC>",
+			"position": 8
+		}
+	]
+}
+```
+
+ik是第三方analyzer
+
+ik_smart
+
+```
+$ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌",   "analyzer": "ik_smart" }'
+
+{
+	"tokens": [
+		{
+			"token": "中华人民共和国",
+			"start_offset": 0,
+			"end_offset": 7,
+			"type": "CN_WORD",
+			"position": 0
+		},
+		{
+			"token": "国歌",
+			"start_offset": 7,
+			"end_offset": 9,
+			"type": "CN_WORD",
+			"position": 1
+		}
+	]
+}
+```
+
+ik_max_word
+
+```
+$ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌",   "analyzer": "ik_max_word" }'
+
+{
+	"tokens": [
+		{
+			"token": "中华人民共和国",
+			"start_offset": 0,
+			"end_offset": 7,
+			"type": "CN_WORD",
+			"position": 0
+		},
+		{
+			"token": "中华人民",
+			"start_offset": 0,
+			"end_offset": 4,
+			"type": "CN_WORD",
+			"position": 1
+		},
+		{
+			"token": "中华",
+			"start_offset": 0,
+			"end_offset": 2,
+			"type": "CN_WORD",
+			"position": 2
+		},
+		{
+			"token": "华人",
+			"start_offset": 1,
+			"end_offset": 3,
+			"type": "CN_WORD",
+			"position": 3
+		},
+		{
+			"token": "人民共和国",
+			"start_offset": 2,
+			"end_offset": 7,
+			"type": "CN_WORD",
+			"position": 4
+		},
+		{
+			"token": "人民",
+			"start_offset": 2,
+			"end_offset": 4,
+			"type": "CN_WORD",
+			"position": 5
+		},
+		{
+			"token": "共和国",
+			"start_offset": 4,
+			"end_offset": 7,
+			"type": "CN_WORD",
+			"position": 6
+		},
+		{
+			"token": "共和",
+			"start_offset": 4,
+			"end_offset": 6,
+			"type": "CN_WORD",
+			"position": 7
+		},
+		{
+			"token": "国",
+			"start_offset": 6,
+			"end_offset": 7,
+			"type": "CN_CHAR",
+			"position": 8
+		},
+		{
+			"token": "国歌",
+			"start_offset": 7,
+			"end_offset": 9,
+			"type": "CN_WORD",
+			"position": 9
+		}
+	]
+}
+```
+
+[Specify an analyzer | Elastic](https://www.elastic.co/guide/en/elasticsearch/reference/7.7/specify-analyzer.html#specify-index-time-default-analyzer)
+
+指定查询的analyzer
+
+```
+GET /test_index4/_search
+{
+  "query": {
+    "match": {
+      "goodName":{
+        "query": "中华人民共和国国歌"
+     //          ,"analyzer": "ik_max_word"
+    ,"analyzer": "ik_smart"
+      }
+    }
+  }
+}
+```
+
+
 
 
 
