@@ -6,6 +6,8 @@ tags: Database Beats Filebeat
 
 [Filebeat Reference](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)
 
+## install
+
 Download
 
 ```shell
@@ -29,6 +31,16 @@ $ ./filebeat setup -e
 
 ```shell
 $ ./filebeat -e
+```
+
+
+
+start-filebeat.sh
+
+```shell
+#!/bin/bash
+
+nohup ./filebeat -e -c filebeat.yml -d "publish" >/dev/null 2>&1 &
 ```
 
 

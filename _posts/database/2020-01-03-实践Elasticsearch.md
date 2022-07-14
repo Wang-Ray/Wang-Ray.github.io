@@ -247,6 +247,8 @@ epoch      timestamp cluster       status node.total node.data shards pri relo i
 
 ## search
 
+[Search your data](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html)
+
 ### match_all
 
 ```shell
@@ -692,7 +694,7 @@ $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/j
 }
 ```
 
-[Specify an analyzer | Elastic](https://www.elastic.co/guide/en/elasticsearch/reference/7.7/specify-analyzer.html#specify-index-time-default-analyzer)
+[Specify an analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/7.7/specify-analyzer.html#specify-index-time-default-analyzer)
 
 指定查询的analyzer
 
