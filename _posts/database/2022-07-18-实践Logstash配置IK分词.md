@@ -82,7 +82,7 @@ logstash-ik.json
   }
 ```
 
-
+logstash.conf
 
 ```
 output {
