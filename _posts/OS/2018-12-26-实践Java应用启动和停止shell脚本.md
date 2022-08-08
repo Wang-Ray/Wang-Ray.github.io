@@ -3,7 +3,7 @@ layout: post
 title: "实践Java应用启动和停止shell脚本"
 date: 2018-12-26 13:53:00 +0800
 categories: OS
-tags: linux find
+tags: linux shell Java
 ---
 
 
@@ -11,9 +11,8 @@ tags: linux find
 ```shell
 #!/bin/bash
 
-source ~/.bashrc
-BASEPATH=$(cd `dirname $0`; pwd)
-
+# source ~/.bashrc
+PROG_PATH=$(cd `dirname $0`; pwd)
 PROG_NAME=$0
 ACTION=$1
 APP_NAME=sample-service
@@ -45,7 +44,7 @@ start_application() {
     fi
 
     echo "starting java process"
-    nohup java $JAVA_OPTS $JVM_DEBUG_OPTS -jar BASEPATH/*.jar >/dev/null 2>&1 &
+    nohup java $JAVA_OPTS $JVM_DEBUG_OPTS -jar $PROG_PATH/*.jar >/dev/null 2>&1 &
     echo "started java process"
 }
 
