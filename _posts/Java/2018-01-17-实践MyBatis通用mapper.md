@@ -9,23 +9,21 @@ tags: database jpa java mybatis mapper
 [通用mapper](https://mapperhelper.github.io)
 
 ```xml
-	    <dependency>
-			<groupId>tk.mybatis</groupId>
-			<artifactId>mapper</artifactId>
-			<version>3.5.0</version>
-		</dependency>
+<dependency>
+	<groupId>tk.mybatis</groupId>
+	<artifactId>mapper</artifactId>
+	<version>3.5.0</version>
+</dependency>
 ```
-
-
 
 ## mapper spring boot
 
 ```xml
-	   <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>1.2.1</version>
-        </dependency
+<dependency>
+	<groupId>tk.mybatis</groupId>
+	<artifactId>mapper-spring-boot-starter</artifactId>
+	<version>1.2.1</version>
+</dependency>
 ```
 
 ## mapper for MyBatis Generator
