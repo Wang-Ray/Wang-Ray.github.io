@@ -16,7 +16,7 @@ MyBatis自动配置类`MybatisAutoConfiguration`
 
 创建并注册一个`SqlSessionTemplate`实例
 
-自动扫描@Mapper注解的接口为Mapper
+自动扫描@Mapper注解的接口为Mapper，可以通过@MapperScan自定义扫描
 
 ```xml
 <dependency>

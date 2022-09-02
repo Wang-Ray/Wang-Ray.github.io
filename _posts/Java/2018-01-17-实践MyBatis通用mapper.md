@@ -16,7 +16,7 @@ tags: database jpa java mybatis mapper
 </dependency>
 ```
 
-## mapper spring boot
+## mapper spring boot starter
 
 ```xml
 <dependency>
@@ -25,6 +25,10 @@ tags: database jpa java mybatis mapper
 	<version>1.2.1</version>
 </dependency>
 ```
+
+*基于mybatis-spring-boot-starter，新版本[Mybatis Mapper](/java/2022/03/04/实践MyBatis-Mapper/)不再基于mybatis-spring-boot-starter*
+
+提供自动配置`MapperAutoConfiguration`
 
 ## mapper for MyBatis Generator
 

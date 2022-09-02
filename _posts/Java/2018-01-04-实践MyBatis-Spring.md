@@ -100,7 +100,7 @@ Spring中定义Mapper，线程安全，每次都获取新的SQLSession
 </bean>
 ```
 
-默认添加了依赖注入注解`@Autowired`
+`MapperFactoryBean`默认添加了依赖注入注解`@Autowired`
 
 ```java
 public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements FactoryBean<T>
