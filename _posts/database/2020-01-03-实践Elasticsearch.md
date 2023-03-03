@@ -12,7 +12,7 @@ tags: Database 读写分离
 
 索引（index），好比MySQL里面的schema
 
-类型（type），好比数据库里面的表，字段组成类似
+类型（mapping type），好比数据库里面的表，字段组成类似，默认：_doc，7版本后取消了这个概念[Removal of mapping types](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html)
 
 ID，文档的唯一编号，自定义或由Elasticsearch生成
 
@@ -456,7 +456,6 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
   }
 }
 '
-
 ```
 
 
@@ -465,7 +464,7 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
 
 ### term
 
-```
+```shell
 $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
@@ -483,7 +482,7 @@ $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application
 
 ### avg
 
-```
+```shell
 $ curl -X GET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
@@ -514,7 +513,7 @@ analyzer分index analyzer和search analyzer，当search analyzer未单独设定�
 
 默认analyzer是standard，中文是按汉字一个一个拆成token，比如：“中华人民”拆成“中”，“华”，“人”和”民“四个token，英文句号（.）和下划线（_）不作为拆分符，比如“org.springframework.boot”是一个token，“ik_max_word”是一个token
 
-```
+```shell
 $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌"}'
 
 {
@@ -590,7 +589,7 @@ ik是第三方analyzer
 
 ik_smart
 
-```
+```shell
 $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌",   "analyzer": "ik_smart" }'
 
 {
@@ -615,7 +614,7 @@ $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/j
 
 ik_max_word
 
-```
+```shell
 $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/json' -d'{   "text": "中华人民共和国国歌",   "analyzer": "ik_max_word" }'
 
 {
@@ -698,7 +697,7 @@ $ curl -XGET "http://192.168.0.22:9200/_analyze" -H 'Content-Type: application/j
 
 指定查询的analyzer
 
-```
+```shell
 GET /test_index4/_search
 {
   "query": {
