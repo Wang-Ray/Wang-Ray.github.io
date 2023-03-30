@@ -2,7 +2,7 @@
 layout: post
 title: "实践调用链监控之Micrometer"
 categories: Java
-tags: database Micrometer tracing
+tags: Java Micrometer tracing
 ---
 
 **Vendor-neutral application observability facade**
