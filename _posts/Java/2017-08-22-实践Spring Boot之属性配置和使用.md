@@ -185,7 +185,7 @@ my.servers[0]=dev.bar.com
 my.servers[1]=foo.bar.com
 ```
 
-第一种：在属性配置类类上
+第一种：在属性配置类上
 
 ```java
 @Component
@@ -201,7 +201,9 @@ public class ServerProperties {
 @Bean
 @ConfigurationProperties(prefix = "foo")
 public ServerProperties createServerProperties() {
+    ServerProperties serverProperties = new ServerProperties();
     ...
+    return serverProperties;
 }
 ```
 
@@ -214,7 +216,7 @@ app.name=MyApp
 app.description=${app.name:默认名称} is a Spring Boot application
 ```
 
-由于`${}`方式会被Maven处理。如果你pom继承的`spring-boot-starter-parent`，Spring Boot 已经将`maven-resources-plugins`默认的`${}`方式改为了`@ @`方式，例如`@name@`。
+由于`${*}`方式会被Maven处理。如果你pom继承的`spring-boot-starter-parent`，Spring Boot 已经将`maven-resources-plugins`默认的`${*}`方式改为了`@*@`方式，例如`@name@`。
 
 如果你是引入的Spring Boot，你可以修改使用[其他的分隔符](http://maven.apache.org/plugins/maven-resources-plugin/resources-mojo.html#delimiters)
 
@@ -241,6 +243,39 @@ public class ConnectionSettings {
 1. `person.firstName`，标准的驼峰式命名
 2. `person.first-name`，虚线（`-`）分割方式，推荐在`.properties`和`.yml`配置文件中使用
 3. `PERSON_FIRST_NAME`，大写下划线形式，建议在系统环境变量中使用
+
+## 类型
+
+### 基本类型
+
+### List
+
+my.servers
+
+```properties
+my.servers[0]=dev.bar.com
+my.servers[1]=foo.bar.com
+```
+
+### Map
+
+my.map
+
+```properties
+my.map.[/key1]=value1
+my.map.[/key2]=value2
+my.map./key3=value3
+```
+
+或者
+
+```yaml
+my:
+  map:
+    "[/key1]": "value1"
+    "[/key2]": "value2"
+    "/key3": "value3"
+```
 
 ## 验证
 
