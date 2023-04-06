@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "读书之《Kubernates Patterns》"
+title: "读书之《Kubernetes Patterns》"
 categories: 云计算
 tags: cloud kubernetes 
 ---
