@@ -264,7 +264,7 @@ my.map
 ```properties
 my.map.[/key1]=value1
 my.map.[/key2]=value2
-my.map./key3=value3
+my.map.[/key3]=value3
 ```
 
 或者
@@ -274,7 +274,7 @@ my:
   map:
     "[/key1]": "value1"
     "[/key2]": "value2"
-    "/key3": "value3"
+    "[/key3]": "value3"
 ```
 
 ## 验证
