@@ -186,5 +186,24 @@ reactor-netty基于Netty扩展的
 
 ## ReactiveWebServerFactoryAutoConfiguration
 
+## 优雅停机
+
+[如何优雅地停止 Spring Boot 应用？ - 武培轩 - 博客园 (cnblogs.com)](https://www.cnblogs.com/wupeixuan/p/13065986.html)
+
+```yaml
+server:
+  shutdown: graceful
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 60000
+```
+
+日志
+
+```
+2023-04-11 14:13:29.816  INFO 14720 --- [extShutdownHook] .b.c.e.AwaitingNonWebApplicationListener :  [Dubbo] Current Spring Boot Application is about to shutdown...
+2023-04-11 14:13:29.819  INFO 14720 --- [extShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+```
+
 ## 参考
 

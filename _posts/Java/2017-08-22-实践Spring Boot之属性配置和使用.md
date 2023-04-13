@@ -69,7 +69,11 @@ spring.config.name = application
 spring.config.location = classpath:/,classpath:/config/,file:./,file:./config/
 ```
 
-**备注：同名属性文件只会读取一个，比如读取了外部的application-dev.properties就不会再读取应用程序内的application-dev.properties；无Profile作为默认配置会被先读取，但是会被有Profile的覆盖。**
+**备注：**
+
+application.properties优先级高于application.yaml
+
+**同名属性文件只会读取一个，比如读取了外部的application-dev.properties就不会再读取应用程序内的application-dev.properties；无Profile作为默认配置会被先读取，但是会被有Profile的覆盖。**
 
 ### 应用程序外基于Profile的配置文件
 

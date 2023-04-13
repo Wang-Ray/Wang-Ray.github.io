@@ -3,7 +3,7 @@ layout: post
 title: "实践Prometheus"
 date: 2018-07-12 11:08:00 +0800
 categories: DevOps
-tags: DevOps TSDB Prometheus Monitor Database
+tags: DevOps TSDB Prometheus Monitor Database 普罗米修斯
 ---
 
 [Prometheus](https://prometheus.io/) - Monitoring system & time series database
