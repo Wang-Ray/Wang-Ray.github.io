@@ -15,7 +15,7 @@ Spring 3.1引入了Profile，是一种条件化配置，基于运行时激活的
 ## 应用于配置类的Profile
 
 ```java
-@Profile("production")
+@Profile("prod")
 @Configuration
 public class SampleConfig {
 ...
