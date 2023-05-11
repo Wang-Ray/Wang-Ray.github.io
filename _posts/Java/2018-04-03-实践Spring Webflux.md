@@ -10,7 +10,7 @@ tags: java Webflux Reactor RxJava Reactive
 
 ## HttpHandler
 
-反应式HTTP请求处理的最底层契约，支持不同的运行时（参见[实践spring boot之webserver](/java/2020/03/04/实践Spring-Boot之WebServer/)），比如Netty、Tomcat等。
+反应式HTTP请求处理的最底层契约，支持不同的运行时（参见[实践spring boot2之webserver](/java/2020/03/04/实践Spring-Boot-2之WebServer/)），比如Netty、Tomcat等。
 
 ```java
 package org.springframework.http.server.reactive;
