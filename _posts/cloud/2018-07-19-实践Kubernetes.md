@@ -8,6 +8,24 @@ tags: cloud Kubernetes container-orchestration
 
 [Kubernetes](https://kubernetes.io/) is an open-source system for automating deployment, scaling, and management of containerized applications.
 
+## 概念
+
+* master
+
+* node
+
+* pod
+
+label
+
+* service
+
+label selector
+
+* container
+
+pause
+
 ## 安装
 
 版本
@@ -158,23 +176,148 @@ kubectl get pods --all-namespaces
 
 kubectl apply -f mysql-deploy.yaml
 
-kubectl get deploy
+mysql-deploy.yaml
 
-kubectl get pods
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
+```
 
-docker ps |grep mysql
+
+
+```
+$ kubectl get deploy
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+mysql   1/1     1            1           24h
+myweb   2/2     2            2           24h
+```
+
+
+
+```shell
+$ kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+mysql-596b96985c-p9l52   1/1     Running   0          23h
+myweb-7d75cf577c-qzbl8   1/1     Running   0          23h
+myweb-7d75cf577c-x9mgd   1/1     Running   0          23h
+```
+
+
+
+```shell
+$ docker ps |grep mysql
+b78afdeb29c5   mysql                                               "docker-entrypoint.s…"   24 hours ago   Up 24 hours             k8s_mysql_mysql-596b96985c-p9l52_default_077df04c-d430-49c9-8070-db9010e00ec6_0
+227547a3c1e2   registry.aliyuncs.com/google_containers/pause:3.2   "/pause"                 24 hours ago   Up 24 hours             k8s_POD_mysql-596b96985c-p9l52_default_077df04c-d430-49c9-8070-db9010e00ec6_0
+```
 
 
 
 kubectl create -f mysql-svc.yaml
 
+mysql-svc.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+```
+
 kubectl get svc mysql
+
+```shell
+$ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          28h
+mysql        ClusterIP   10.104.218.155   <none>        3306/TCP         23h
+myweb        NodePort    10.106.209.221   <none>        8080:30001/TCP   23h
+```
 
 
 
 注意修改mysql的地址
 
 kubectl apply -f myweb-deploy.yaml
+
+myweb-deploy.yaml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myweb
+  name: myweb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - image: kubeguide/tomcat-app:v1
+        name: myweb
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MYSQL_SERVICE_HOST
+          value: 10.104.218.155
+```
+
+
+
+kubectl create -f myweb-svc.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      nodePort: 30001
+  selector:
+    app: myweb
+```
+
+
+
+kubectl get deployments.apps
+
+kubectl edit deployment/myweb -o yaml --save-config
 
 kubectl get svc myweb
 
