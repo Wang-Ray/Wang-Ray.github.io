@@ -8,9 +8,15 @@ tags: linux traceroute network
 
 通过traceroute我们可以知道信息从你的计算机到互联网另一端的主机是走的什么路径（网关节点）。
 
-linux系统中，我们称之为traceroute，在MS Windows中为tracert。
+在linux系统中我们称之为`traceroute`，在MS Windows中为`tracert`。
 
-## 命令
+## 安装
+
+```shell
+$ yum -y install traceroute
+```
+
+## 使用
 
 ```shell
 $ traceroute --help
