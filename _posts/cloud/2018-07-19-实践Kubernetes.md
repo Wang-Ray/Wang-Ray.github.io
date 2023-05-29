@@ -54,6 +54,10 @@ vi /etc/fstab，删除swap挂载
 
 
 
+建议在主机上禁用 SELinux （修改文件／etc/sysconfig/selinux, SELINUX=enforcing 修改为 SELIN口(=中sabled) 
+
+
+
 修改主机名
 
 ```
