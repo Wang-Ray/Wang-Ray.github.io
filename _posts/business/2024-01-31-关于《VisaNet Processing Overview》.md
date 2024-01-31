@@ -5,35 +5,35 @@ categories: 业务
 tags: business cross-border payment visa
 ---
 
-## 原版
+## 英文版
 
 ### VisaNet Processing
 
 **VisaNet** is the core of Visa's centralized and modular processing network. VisaNet's core payment processing provides three essential functions in one reliable and secure package:
 
-**·** ***\*Authorization:\**** The process of approving or declining a transaction before a purchase is finalized or cash is disbursed.
+**·** ***Authorization:*** The process of approving or declining a transaction before a purchase is finalized or cash is disbursed.
 
-**·** ***\*Clearing:\**** The process of delivering final transaction data from Visa acquirers to Visa issuers for posting to the cardholder’s account. Clearing also includes the calculation of certain fees and charges that apply to the issuer and acquirer involved in the transaction, as well as the conversion of transaction amounts to the appropriate settlement currencies.
+**·** ***Clearing:*** The process of delivering final transaction data from Visa acquirers to Visa issuers for posting to the cardholder’s account. Clearing also includes the calculation of certain fees and charges that apply to the issuer and acquirer involved in the transaction, as well as the conversion of transaction amounts to the appropriate settlement currencies.
 
-**·** ***\*Settlement:\**** The process of calculating, determining and reporting the net financial position of Visa’s issuers and acquirers for all transactions that are cleared.
+**·** ***Settlement:*** The process of calculating, determining and reporting the net financial position of Visa’s issuers and acquirers for all transactions that are cleared.
 
 ### VisaNet Systems
 
-### VisaNet Integrated Payment System
+#### VisaNet Integrated Payment System
 
 ![image-20240131090625557](/images/image-20240131090625557.png)
 
 The VisaNet Integrated Payment (V.I.P.) System is an online system that performs both authorization only and full financial transaction processing.
 
-**·** ***\*V.I.P. Authorization Only (Dual Message):\**** With real-time authorization only processing, a separate transaction must be processed to complete the clearing process. This second transaction can be initiated in either V.I.P. or BASE II.
+**·** ***V.I.P. Authorization Only (Dual Message):*** With real-time authorization only processing, a separate transaction must be processed to complete the clearing process. This second transaction can be initiated in either V.I.P. or BASE II.
 
-**·** ***\*V.I.P. Full Service (Single Message):\**** The V.I.P. message contains the information required to perform both authorization and clearing in a single transaction.
+**·** ***V.I.P. Full Service (Single Message):*** The V.I.P. message contains the information required to perform both authorization and clearing in a single transaction.
 
-### BASE II
+#### BASE II
 
 BASE II performs batch clearing processing capabilities for VisaNet. BASE II collects, calculates and compiles all of the transaction data from acquirers and issuers that is required to facilitate the financial clearing process.
 
-### VisaNet Settlement Service
+#### VisaNet Settlement Service
 
 The VisaNet Settlement Service (VSS) consolidates the settlement of all Visa products and services into one process. VSS provides flexibility in defining settlement reporting hierarchies and their corresponding reporting and funds transfer points.
 
@@ -65,13 +65,13 @@ VisaNet 是 Visa 的集中式和模块化处理网络的核心。 VisaNet 核心
 
 * 授权: 在购买完成或现金分发之前批准或拒绝交易的过程。
 
-* 清算: 从发卡机构向发卡行发送最终交易数据以记入持卡人账户的过程。清算也包括计算与交易相关的发卡行和收单行收取的某些费用和收费，以及将交易金额转换为适当的结算货币。
+* 清算: 从收单行向发卡行发送最终交易数据以记入持卡人账户的过程。清算也包括计算与交易相关的发卡行和收单行收取的某些费用和收费，以及将交易金额转换为适当的结算货币。
 
 * 结算: 对所有已清算交易进行净额财务状况计算、 确定和报告的过程。
 
 ### 维萨网络系统
 
-### 维萨 网络 集成 付款 系统
+#### 维萨 网络 集成 付款 系统
 
 ![image-20240131090625557](/images/image-20240131090625557.png)
 
@@ -81,11 +81,11 @@ VisaNet 是 Visa 的集中式和模块化处理网络的核心。 VisaNet 核心
 
 * V.I.P.完整服务（单条消息）：VIP消息包含在一笔交易中完成授权和清算所需的信息。
 
-### BASE II
+#### BASE II
 
 BASE II 为 VisaNet 提供批量清算处理能力。BASE II 收集、计算并汇总发卡机构和收单机构在金融清算过程中所需的所有交易数据。
 
-### 签证网络结算服务
+#### 签证网络结算服务
 
 签证结算服务（VSS）将所有Visa产品和服务的 结算合并为一个流程。VSS提供定义 结算报告层次结构及其相应的报告和资金转账点 的灵活性。
 
