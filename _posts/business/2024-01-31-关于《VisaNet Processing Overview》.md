@@ -9,7 +9,7 @@ tags: business cross-border payment visa
 
 ### VisaNet Processing
 
-VisaNet is the core of Visa's centralized and modular processing network. VisaNet's core payment processing provides three essential functions in one reliable and secure package:
+**VisaNet** is the core of Visa's centralized and modular processing network. VisaNet's core payment processing provides three essential functions in one reliable and secure package:
 
 **·** ***\*Authorization:\**** The process of approving or declining a transaction before a purchase is finalized or cash is disbursed.
 
@@ -37,7 +37,7 @@ BASE II performs batch clearing processing capabilities for VisaNet. BASE II col
 
 The VisaNet Settlement Service (VSS) consolidates the settlement of all Visa products and services into one process. VSS provides flexibility in defining settlement reporting hierarchies and their corresponding reporting and funds transfer points.
 
-Technical Documentation
+### Technical Documentation
 
 For technical publications relating to these systems, refer to the [VisaNet Technical Documentation](https://secure.visaonline.com/pages/4.1497) section.
 
@@ -90,3 +90,5 @@ BASE II 为 VisaNet 提供批量清算处理能力。BASE II 收集、计算并�
 签证结算服务（VSS）将所有Visa产品和服务的 结算合并为一个流程。VSS提供定义 结算报告层次结构及其相应的报告和资金转账点 的灵活性。
 
 ### 技术文档
+
+跟这些系统相关的技术文档，可以参考[VisaNet Technical Documentation](https://secure.visaonline.com/pages/4.1497) 章节。
