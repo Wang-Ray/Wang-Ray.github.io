@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "实践Maven之Super POM"
-date: 2019-09-12 11:08:00 +0800
 categories: 工具
 tags: Tool maven
 ---
