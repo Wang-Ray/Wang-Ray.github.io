@@ -58,6 +58,8 @@ handle的返回值是`Mono<Void>`
 
 #### ReactorHttpHandlerAdapter
 
+Adapt HttpHandler to the Reactor Netty channel handling function.
+
 ```java
 	@Override
 	public Mono<Void> apply(HttpServerRequest reactorRequest, HttpServerResponse reactorResponse) {
@@ -85,6 +87,8 @@ handle的返回值是`Mono<Void>`
 ```
 
 #### ServletHttpHandlerAdapter
+
+Adapt HttpHandler to an HttpServlet using Servlet Async support and Servlet 3.1 non-blocking I/O.
 
 ```java
 	@Override
@@ -128,6 +132,8 @@ handle的返回值是`Mono<Void>`
 ```
 
 #### UndertowHttpHandlerAdapter
+
+Adapt HttpHandler to the Undertow io.undertow.server.HttpHandler.
 
 ```java
 	@Override
