@@ -109,6 +109,61 @@ protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 
 有`@SpringBootConfiguration`（`@Configuration`）、`@EnableAutoConfiguration`和`@ComponentScan`组成。
 
+## CommandLineRunner
+
+```java
+/**
+ * Interface used to indicate that a bean should <em>run</em> when it is contained within
+ * a {@link SpringApplication}. Multiple {@link CommandLineRunner} beans can be defined
+ * within the same application context and can be ordered using the {@link Ordered}
+ * interface or {@link Order @Order} annotation.
+ * <p>
+ * If you need access to {@link ApplicationArguments} instead of the raw String array
+ * consider using {@link ApplicationRunner}.
+ *
+ * @author Dave Syer
+ * @since 1.0.0
+ * @see ApplicationRunner
+ */
+@FunctionalInterface
+public interface CommandLineRunner {
+
+	/**
+	 * Callback used to run the bean.
+	 * @param args incoming main method arguments
+	 * @throws Exception on error
+	 */
+	void run(String... args) throws Exception;
+
+}
+```
+
+## ApplicationRunner
+
+```java
+/**
+ * Interface used to indicate that a bean should <em>run</em> when it is contained within
+ * a {@link SpringApplication}. Multiple {@link ApplicationRunner} beans can be defined
+ * within the same application context and can be ordered using the {@link Ordered}
+ * interface or {@link Order @Order} annotation.
+ *
+ * @author Phillip Webb
+ * @since 1.3.0
+ * @see CommandLineRunner
+ */
+@FunctionalInterface
+public interface ApplicationRunner {
+
+	/**
+	 * Callback used to run the bean.
+	 * @param args incoming application arguments
+	 * @throws Exception on error
+	 */
+	void run(ApplicationArguments args) throws Exception;
+
+}
+```
+
 
 
 ## QA

@@ -122,6 +122,10 @@ public abstract class BaseService<T> implements IService<T> {
 }
 ```
 
+### @PostConstruct
+
+### @PreDestroy
+
 ## 基于Java Config
 
 ### @Configuration
