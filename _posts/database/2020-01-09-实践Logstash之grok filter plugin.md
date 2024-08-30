@@ -8,7 +8,7 @@ tags: Database Logstash grok elastic elk
 
 [Grok filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
 
-
+## 样例
 
 ### 样例 1
 
@@ -81,6 +81,29 @@ grok-pattern：
 ```
 
 
+
+### 样例3
+
+grok-pattern:
+
+```
+abc,a:%{INT:a},b:%{INT:b}
+```
+
+sample:
+
+```
+abc,a:1,b:2
+```
+
+result:
+
+```
+{
+  "a": 1,
+  "b": 2
+}
+```
 
 
 
@@ -186,8 +209,10 @@ LOGLEVEL ([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|
 
 ## 参考资料
 
-[在线Grok Debug工具，Grok校验|调试 (5axxw.com)](https://www.5axxw.com/tools/v2/grok.html)
+[在线Grok Debug工具，Grok校验/调试 (5axxw.com)](https://www.5axxw.com/tools/v2/grok.html)
 
 [Grok Debugger](http://grokdebug.herokuapp.com/)
 
 [Grok Construtor](http://grokconstructor.appspot.com/)
+
+[初识Grok：快速入门指南](https://wenku.csdn.net/column/kgffr7mki8?spm=1055.2635.3001.10023.1)
