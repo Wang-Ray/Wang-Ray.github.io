@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "关于《VisaNet Processing Overview》"
-categories: 业务
+categories: payment
 tags: business cross-border payment visa
 ---
 

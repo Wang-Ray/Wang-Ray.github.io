@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "关于《Base ii clearing system overview》（中文版）"
-categories: 业务
+categories: payment
 tags: business cross-border payment visa clearing
 ---
 

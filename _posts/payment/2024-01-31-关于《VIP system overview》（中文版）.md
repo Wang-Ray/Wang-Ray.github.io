@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "关于《VIP system overview》（中文版）"
-categories: 业务
+categories: payment
 tags: business cross-border payment visa VIP
 ---
 
