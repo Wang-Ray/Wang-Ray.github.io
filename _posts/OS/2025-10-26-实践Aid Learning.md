@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 实践Ventory
+title: 实践Aid Learning
 categories: OS
 tags: OS "Aid Learning" AidLux APLUX 阿加犀 Termux
 ---
