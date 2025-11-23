@@ -29,6 +29,10 @@ tags: maven tool maven-failsafe-plugin
 
 
 
+跳过集成测试：-DskipITs
+
+
+
 ## QA
 
 ### what is the different between maven-surefire-plugin and mave-failsafe-plugin?
