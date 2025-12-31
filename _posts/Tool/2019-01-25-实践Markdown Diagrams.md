@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "实践Markdown画图"
+title: "实践Markdown Diagrams"
 date: 2019-01-25 16:03:13 +0800
 categories: 工具
-tags: markdown graphic flow
+tags: markdown sequence flowcharts diagrams
 ---
 
 不是所有的markdown引擎支持markdown画图，支持得比较好的包括：Typora【[Draw Diagrams With Markdown](https://support.typora.io/Draw-Diagrams-With-Markdown/)】
