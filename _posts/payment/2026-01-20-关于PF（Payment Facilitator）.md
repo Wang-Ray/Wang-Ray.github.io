@@ -1,8 +1,8 @@
 ---
-title: 关于PCI
+title: 关于PF(Payment Facilitator)
 layout: post
 categories: payment
-tags: ISO payment PF reseller referral
+tags: ISO payment PF reseller referral "Payment Facilitator"
 ---
 
 ## Payment Facilitator (PayFac/PF) 详细介绍
