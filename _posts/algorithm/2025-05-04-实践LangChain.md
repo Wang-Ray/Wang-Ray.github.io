@@ -4,7 +4,7 @@ categories: Algorithm
 tags: Algorithm AI Ollama "deep learning"
 ---
 
-
+[LangChain](https://www.langchain.com/)
 
 ### 参考资料
 
