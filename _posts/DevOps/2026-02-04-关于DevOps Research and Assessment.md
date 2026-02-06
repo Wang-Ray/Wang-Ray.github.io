@@ -1,15 +1,15 @@
 ---
-title: 关于DORA
+title: 关于DevOps Research and Assessment
 layout: post
 categories: payment
-tags: ISO payment DORA compliance security
+tags: ISO payment DORA devops
 ---
 
-## DORA (DevOps Research and Assessment) - DevOps 研究与评估
+## DevOps Research and Assessment - DevOps 研究与评估
 
 ### 1. 定义
 
-**DORA** 也指 Google Cloud 的 DevOps 研究团队，以及他们提出的衡量软件交付效能的四个关键指标。
+DevOps Research and Assessment 也指 Google Cloud 的 DevOps 研究团队，以及他们提出的衡量软件交付效能的四个关键指标。
 
 ```
 DORA Metrics = 衡量 DevOps 效能的"黄金指标"
@@ -169,29 +169,3 @@ DORA 指标实施步骤:
 | **GitLab**    | 内置 DORA 指标       |
 | **Grafana**   | 自建 Dashboard       |
 
----
-
-## 两种 DORA 的对比
-
-| 维度         | DORA (欧盟法规)                    | DORA (DevOps 指标)             |
-| ------------ | ---------------------------------- | ------------------------------ |
-| **全称**     | Digital Operational Resilience Act | DevOps Research and Assessment |
-| **领域**     | 金融监管合规                       | 软件工程效能                   |
-| **发布方**   | 欧盟                               | Google Cloud                   |
-| **性质**     | 法律强制要求                       | 最佳实践指标                   |
-| **适用对象** | 金融机构                           | 所有软件团队                   |
-| **目标**     | 运营韧性                           | 交付效能                       |
-
----
-
-## 总结
-
-**如果你是金融/支付行业：**
-- 关注 DORA 法案，确保 2025 年 1 月前合规
-- 重点：ICT 风险管理、事件报告、第三方管理、韧性测试
-
-**如果你是软件研发团队：**
-- 关注 DORA 指标，衡量和提升交付效能
-- 重点：部署频率、前置时间、变更失败率、恢复时间
-
-需要我进一步展开某个方面吗？比如 DORA 法案的合规检查清单，或者 DORA 指标的具体实施方案？
