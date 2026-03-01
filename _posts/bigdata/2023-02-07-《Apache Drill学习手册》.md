@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: 数据库
+categories: bigdata
 tags: Database Drill Apache Drill学习手册
 ---
 
