@@ -1,0 +1,37 @@
+---
+layout: post
+categories: payment
+tags: payment bank 8583 banknet
+---
+
+
+
+
+
+### MTI
+
+#### Mastercard
+
+| MTI  | Description                                                  | Comment |
+| ---- | ------------------------------------------------------------ | ------- |
+| 0100 | Authorization Request                                        |         |
+| 0110 | Authorization Response                                       |         |
+| 0400 | Reversal Request                                             |         |
+| 0410 | Reversal Response                                            |         |
+| 0120 | Authorization Advice<br />File Update Advice<br />Descrepancy Advice |         |
+| 0420 | Reversal Advice                                              |         |
+| 0300 | File Update or Inquiry Request (Acquirer)                    |         |
+| 0302 | File Update or Inquiry Request (Issuer)                      |         |
+| 0310 | File Update or Inquiry Response (Acquirer)                   |         |
+| 0312 | File Update or Inquiry Response (Issuer)                     |         |
+| 0322 | File Update or Discrepancy Advice                            |         |
+| 0800 | Network Management Request                                   |         |
+| 0810 | Network Management Response                                  |         |
+|      |                                                              |         |
+|      |                                                              |         |
+|      |                                                              |         |
+|      |                                                              |         |
+|      |                                                              |         |
+|      |                                                              |         |
+
+
