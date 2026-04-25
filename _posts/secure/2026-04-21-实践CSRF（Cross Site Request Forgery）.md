@@ -19,20 +19,14 @@ tags: SOP "Cross Site Request Forgery" CORS CSRF
 
    - 每次请求带一个随机 token
 
-2. **SameSite Cookie**
+2. SameSite Cookie
 
    ```
    Set-Cookie: SameSite=Strict
    ```
 
-<<<<<<< HEAD
-3. **Referer / Origin 校验**
-=======
-3. **Referer / Origin 校验**
-
-
+3. Referer / Origin 校验
 
 ## QA
 
-[前端安全系列（二）：如何防止CSRF攻击？](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
->>>>>>> fa6636be261c1d23c40aa7df5d88ff7cfeb005de
+[前端安全系列（二）：如何防止CSRF攻击？
