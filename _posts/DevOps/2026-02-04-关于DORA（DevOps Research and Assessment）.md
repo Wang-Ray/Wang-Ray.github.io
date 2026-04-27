@@ -1,8 +1,8 @@
 ---
-title: 关于DevOps Research and Assessment
+title: 关于DORA(DevOps Research and Assessment）
 layout: post
-categories: payment
-tags: ISO payment DORA devops
+categories: devops
+tags: ISO DORA devops "DevOps Research and Assessment"
 ---
 
 ## DevOps Research and Assessment - DevOps 研究与评估
