@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 实践AetherSX2
+title: 实践RetroArch
 categories: Entertainment
 tags: Entertainment emulator PCSX2 AetherSX2 NetherSX2 RetroArch
 ---
