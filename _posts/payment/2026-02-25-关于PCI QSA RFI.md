@@ -1,5 +1,5 @@
 ---
-title: 关于PCI
+title: 关于PCI QSA RFI
 layout: post
 categories: payment
 tags: PCI PTS DSS

@@ -49,7 +49,7 @@ workspace可以理解为包含多个目录的一种组织结构，可以保存�
 
  
 
-默认单击文件会打开文件（预览），但是是在同一个tab中，会覆盖之前预览的文件。如果不希望覆盖之前的tab，而是在新的tab中打开，可以不要勾选`Workbench > Editor: Enable Preview`，对应的配置参数：`"workbench.editor.enablePreview": false`
+默认单击文件会打开文件（预览），但是是在同一个tab中，会覆盖之前预览的文件。如果不希望覆盖之前的tab，而是在新的tab中打开，可以不要勾选`Workbench > Editor: Enable Preview`，对应的配置参数：`"workbench.editor.enablePreview": false`。或者双击某个文件，则会在新的tab打开。
 
 ## Java
 
