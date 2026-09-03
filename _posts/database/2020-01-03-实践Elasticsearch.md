@@ -12,7 +12,7 @@ tags: Database 读写分离
 
 索引（index），好比MySQL里面的schema
 
-类型（mapping type），好比数据库里面的表，字段组成类似，默认：_doc，7版本后取消了这个概念[Removal of mapping types](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html)
+类型（mapping type），好比数据库里面的表，字段组成类似，默认：_doc，7版本后取消了这个概念[Removal of mapping types](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html)，推推荐：Index per document type，不要一个索引多个mapping type，一个索引只有一套数据结构。
 
 ID，文档的唯一编号，自定义或由Elasticsearch生成
 
