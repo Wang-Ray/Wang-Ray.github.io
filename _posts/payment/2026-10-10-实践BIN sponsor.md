@@ -10,9 +10,9 @@ tags: payment bank 8583 issuer "bin sponsor" sponsor "acquiring sponsor" "sponso
 
 在银行卡业务里，可以把它理解成：**一家已经是 Visa/Mastercard 会员、拥有 BIN 使用资格的持牌机构，把自己的卡组织会员资格和 BIN 能力“提供”给另一家金融科技公司使用。**
 
-比如 Onerway 想做 Visa 发卡，但某个业务主体自己不是 Visa Principal Member，不能直接获得/使用 Visa BIN，那么可以找一家 Visa Member 做 **BIN Sponsor**：
+比如  想做 Visa 发卡，但某个业务主体自己不是 Visa Principal Member，不能直接获得/使用 Visa BIN，那么可以找一家 Visa Member 做 **BIN Sponsor**：
 
-**Visa → BIN Sponsor（Visa Member）→ Onerway/Fintech → Cardholder**
+**Visa → BIN Sponsor（Visa Member）→ Fintech → Cardholder**
 
 这里的 **BIN（Bank Identification Number）** 是卡号开头用于识别发卡机构/卡产品归属的一段数字。比如一张卡：
 
@@ -59,7 +59,7 @@ BIN Sponsor 到底“赞助”什么？
 | **Acquirer**        | 正式承接商户收单                           |
 | **PayFac**          | 在 Acquirer 下面管理一批 Sub-merchants     |
 
-还有一个很关键的点：**BIN Sponsor 主要是发卡侧概念；收单侧也存在非常类似的 Sponsor 模式。** 如果你们是在研究 Onerway 自己成为 Visa Member 还是找 Sponsor，我可以接着把 **BIN Sponsor、Issuer、Program Manager、Principal Member** 之间的法律/资金/系统关系画清楚。
+还有一个很关键的点：**BIN Sponsor 主要是发卡侧概念；收单侧也存在非常类似的 Sponsor 模式。** 如果你们是在研究自己成为 Visa Member 还是找 Sponsor，我可以接着把 **BIN Sponsor、Issuer、Program Manager、Principal Member** 之间的法律/资金/系统关系画清楚。
 
 ### Acquiring Sponsor / Sponsoring Acquirer
 
@@ -71,13 +71,13 @@ BIN Sponsor 到底“赞助”什么？
 
 **收单侧：Visa → Sponsoring Acquirer → PayFac / ISO / PSP → Merchant**
 
-举个典型的 PayFac 场景。假设 Onerway 想给大量跨境电商商户提供 Visa 收单，但某个 Onerway 法人本身不是 Visa Acquirer Member，就可以和一家 Visa Acquirer 合作：
+举个典型的 PayFac 场景。假设想给大量跨境电商商户提供 Visa 收单，但某个法人本身不是 Visa Acquirer Member，就可以和一家 Visa Acquirer 合作：
 
 **Visa**
 ↓
 **Acquirer / Sponsoring Acquirer**
 ↓
-**Onerway（PayFac / PSP）**
+**（PayFac / PSP）**
 ↓
 **Sub-Merchant**
 ↓
@@ -107,4 +107,4 @@ BIN Sponsor 到底“赞助”什么？
 
 不要简单认为都是一回事。关键要看三个问题：**谁是 Visa Member、谁和 Merchant 建立收单关系、谁最终对 Visa 承担责任。**
 
-如果放到 Onerway 这种跨境收单业务里，**“自己成为 Visa Acquirer Member” vs “找 Sponsoring Acquirer 做 PayFac”** 是两条完全不同的路线，后者通常进入市场更快，但 Sponsor 对你们的商户准入、风险、合规、保证金和结算会有比较强的控制。
+如果放到这种跨境收单业务里，**“自己成为 Visa Acquirer Member” vs “找 Sponsoring Acquirer 做 PayFac”** 是两条完全不同的路线，后者通常进入市场更快，但 Sponsor 对你们的商户准入、风险、合规、保证金和结算会有比较强的控制。
